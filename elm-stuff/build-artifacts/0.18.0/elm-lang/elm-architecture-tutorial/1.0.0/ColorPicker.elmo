@@ -1,0 +1,212 @@
+var _elm_lang$elm_architecture_tutorial$ColorPicker$faceMapFunc = function (_p0) {
+	var _p1 = _p0;
+	var _p9 = _p1.rows;
+	var _p8 = _p1.colors;
+	var z = function () {
+		var _p2 = _p8.z;
+		if (_p2.ctor === 'Nothing') {
+			return {ctor: '[]'};
+		} else {
+			var _p3 = _p2._0;
+			return _elm_lang$core$Native_Utils.eq(_p9.z, 1) ? {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: {rows: _p9, direction: _elm_lang$elm_architecture_tutorial$BlockModel$Back},
+					_1: _p3
+				},
+				_1: {ctor: '[]'}
+			} : (_elm_lang$core$Native_Utils.eq(_p9.z, _elm_lang$elm_architecture_tutorial$Rib$size) ? {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: {rows: _p9, direction: _elm_lang$elm_architecture_tutorial$BlockModel$Front},
+					_1: _p3
+				},
+				_1: {ctor: '[]'}
+			} : {ctor: '[]'});
+		}
+	}();
+	var y = function () {
+		var _p4 = _p8.y;
+		if (_p4.ctor === 'Nothing') {
+			return {ctor: '[]'};
+		} else {
+			var _p5 = _p4._0;
+			return _elm_lang$core$Native_Utils.eq(_p9.y, 1) ? {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: {rows: _p9, direction: _elm_lang$elm_architecture_tutorial$BlockModel$Top},
+					_1: _p5
+				},
+				_1: {ctor: '[]'}
+			} : (_elm_lang$core$Native_Utils.eq(_p9.y, _elm_lang$elm_architecture_tutorial$Rib$size) ? {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: {rows: _p9, direction: _elm_lang$elm_architecture_tutorial$BlockModel$Down},
+					_1: _p5
+				},
+				_1: {ctor: '[]'}
+			} : {ctor: '[]'});
+		}
+	}();
+	var x = function () {
+		var _p6 = _p8.x;
+		if (_p6.ctor === 'Nothing') {
+			return {ctor: '[]'};
+		} else {
+			var _p7 = _p6._0;
+			return _elm_lang$core$Native_Utils.eq(_p9.x, 1) ? {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: {rows: _p9, direction: _elm_lang$elm_architecture_tutorial$BlockModel$Left},
+					_1: _p7
+				},
+				_1: {ctor: '[]'}
+			} : (_elm_lang$core$Native_Utils.eq(_p9.x, _elm_lang$elm_architecture_tutorial$Rib$size) ? {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: {rows: _p9, direction: _elm_lang$elm_architecture_tutorial$BlockModel$Right},
+					_1: _p7
+				},
+				_1: {ctor: '[]'}
+			} : {ctor: '[]'});
+		}
+	}();
+	return _elm_lang$core$List$concat(
+		{
+			ctor: '::',
+			_0: x,
+			_1: {
+				ctor: '::',
+				_0: y,
+				_1: {
+					ctor: '::',
+					_0: z,
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _elm_lang$elm_architecture_tutorial$ColorPicker$foldFunc = F2(
+	function (xyzColorRow, _p10) {
+		var _p11 = _p10;
+		var _p18 = _p11._0;
+		var zColor = xyzColorRow.colors.z;
+		var yColor = xyzColorRow.colors.y;
+		var xColor = xyzColorRow.colors.x;
+		var _p12 = function () {
+			var _p13 = xColor;
+			if (_p13.ctor === 'Nothing') {
+				return {ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: _p18};
+			} else {
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$List$head(_p18),
+					_1: A2(_elm_lang$core$List$drop, 1, _p18)
+				};
+			}
+		}();
+		var xColor2 = _p12._0;
+		var colors2 = _p12._1;
+		var _p14 = function () {
+			var _p15 = yColor;
+			if (_p15.ctor === 'Nothing') {
+				return {ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: colors2};
+			} else {
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$List$head(colors2),
+					_1: A2(_elm_lang$core$List$drop, 1, colors2)
+				};
+			}
+		}();
+		var yColor2 = _p14._0;
+		var colors3 = _p14._1;
+		var _p16 = function () {
+			var _p17 = zColor;
+			if (_p17.ctor === 'Nothing') {
+				return {ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: colors3};
+			} else {
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$List$head(colors3),
+					_1: A2(_elm_lang$core$List$drop, 1, colors3)
+				};
+			}
+		}();
+		var zColor2 = _p16._0;
+		var colors4 = _p16._1;
+		var newXYZColorRow = {
+			rows: xyzColorRow.rows,
+			colors: {x: xColor2, y: yColor2, z: zColor2}
+		};
+		return {
+			ctor: '_Tuple2',
+			_0: colors4,
+			_1: {ctor: '::', _0: newXYZColorRow, _1: _p11._1}
+		};
+	});
+var _elm_lang$elm_architecture_tutorial$ColorPicker$colorsPossibleToRgb = function (i) {
+	var b = A2(
+		_elm_lang$core$Basics_ops['%'],
+		i,
+		Math.pow(16, 2));
+	var g = A2(
+		_elm_lang$core$Basics_ops['%'],
+		(i / Math.pow(16, 2)) | 0,
+		Math.pow(16, 2));
+	var r = (i / Math.pow(16, 4)) | 0;
+	return {ctor: '_Tuple3', _0: r, _1: g, _2: b};
+};
+var _elm_lang$elm_architecture_tutorial$ColorPicker$colorsPossible = Math.pow(16, 6);
+var _elm_lang$elm_architecture_tutorial$ColorPicker$items = (6 * _elm_lang$elm_architecture_tutorial$Rib$size) * _elm_lang$elm_architecture_tutorial$Rib$size;
+var _elm_lang$elm_architecture_tutorial$ColorPicker$range = A2(_elm_lang$core$List$range, 1, _elm_lang$elm_architecture_tutorial$ColorPicker$items);
+var _elm_lang$elm_architecture_tutorial$ColorPicker$step = (((_elm_lang$elm_architecture_tutorial$ColorPicker$colorsPossible / _elm_lang$elm_architecture_tutorial$ColorPicker$items) | 0) + 1) - 1;
+var _elm_lang$elm_architecture_tutorial$ColorPicker$mapFunction = function (i) {
+	var amount = i * _elm_lang$elm_architecture_tutorial$ColorPicker$step;
+	var _p19 = _elm_lang$elm_architecture_tutorial$ColorPicker$colorsPossibleToRgb(amount);
+	var r = _p19._0;
+	var g = _p19._1;
+	var b = _p19._2;
+	return A3(_elm_lang$core$Color$rgb, r, g, b);
+};
+var _elm_lang$elm_architecture_tutorial$ColorPicker$colors = A2(_elm_lang$core$List$map, _elm_lang$elm_architecture_tutorial$ColorPicker$mapFunction, _elm_lang$elm_architecture_tutorial$ColorPicker$range);
+var _elm_lang$elm_architecture_tutorial$ColorPicker$allBlocksPicker = function () {
+	var _p20 = A3(
+		_elm_lang$core$List$foldl,
+		_elm_lang$elm_architecture_tutorial$ColorPicker$foldFunc,
+		{
+			ctor: '_Tuple2',
+			_0: _elm_lang$elm_architecture_tutorial$ColorPicker$colors,
+			_1: {ctor: '[]'}
+		},
+		_elm_lang$elm_architecture_tutorial$BlockBuilder$allBlocks);
+	var rows = _p20._1;
+	return rows;
+}();
+var _elm_lang$elm_architecture_tutorial$ColorPicker$allBlocksFaces = _elm_lang$core$List$concat(
+	A2(_elm_lang$core$List$map, _elm_lang$elm_architecture_tutorial$ColorPicker$faceMapFunc, _elm_lang$elm_architecture_tutorial$ColorPicker$allBlocksPicker));
+var _elm_lang$elm_architecture_tutorial$ColorPicker$colorDict = function () {
+	var empty = _elm_lang$core$Dict$empty;
+	return A3(
+		_elm_lang$core$List$foldl,
+		F2(
+			function (_p21, dict) {
+				var _p22 = _p21;
+				return A3(
+					_elm_lang$core$Dict$insert,
+					_elm_lang$core$Basics$toString(_p22._1),
+					_p22._0,
+					dict);
+			}),
+		empty,
+		_elm_lang$elm_architecture_tutorial$ColorPicker$allBlocksFaces);
+}();
+var _elm_lang$elm_architecture_tutorial$ColorPicker$getByColor = function (str) {
+	return A2(_elm_lang$core$Dict$get, str, _elm_lang$elm_architecture_tutorial$ColorPicker$colorDict);
+};

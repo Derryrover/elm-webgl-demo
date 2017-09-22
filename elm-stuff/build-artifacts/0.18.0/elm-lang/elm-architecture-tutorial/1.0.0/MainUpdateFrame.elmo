@@ -1,0 +1,23 @@
+var _elm_lang$elm_architecture_tutorial$MainUpdateFrame$updateFrame = F2(
+	function (model, dt) {
+		var viewAngle = A2(_elm_lang$elm_architecture_tutorial$MainAngle$calculateAngle, model.angle, dt);
+		var moveAngle = A2(_elm_lang$elm_architecture_tutorial$MainAngle$calculateMoveRowAngle, model.movingRowAngle, dt);
+		var _p0 = _elm_lang$core$Native_Utils.cmp(moveAngle, 0.5 * _elm_lang$core$Basics$pi) > 0;
+		if (_p0 === true) {
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{angle: viewAngle, movingRowAngle: 0}),
+				_1: _elm_lang$elm_architecture_tutorial$CommandToMessage$message(_elm_lang$elm_architecture_tutorial$MainMessage$EndMove)
+			};
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{angle: viewAngle, movingRowAngle: moveAngle}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
+	});

@@ -1,0 +1,61 @@
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$preProtoColorBlackFaces = {black: _elm_lang$elm_architecture_tutorial$BlockToVertexCoordinates$preProtoBlackFace, color: _elm_lang$elm_architecture_tutorial$BlockToVertexCoordinates$preProtoColorFace};
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$scale = 1 / _elm_lang$core$Basics$toFloat(_elm_lang$elm_architecture_tutorial$Rib$size);
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$scaleFunction = _elm_community$linear_algebra$Math_Matrix4$transform(
+	A3(_elm_community$linear_algebra$Math_Matrix4$makeScale3, _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$scale, _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$scale, _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$scale));
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoColorBlackFaces = A2(_elm_lang$elm_architecture_tutorial$BlockToVertexModel$mapColorBlackFaces, _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$scaleFunction, _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$preProtoColorBlackFaces);
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$preProtoAllFaces = {
+	front: _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoColorBlackFaces,
+	back: A2(
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$mapColorBlackFaces,
+		_elm_community$linear_algebra$Math_Matrix4$transform(
+			A2(
+				_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+				_elm_lang$core$Basics$pi,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0))),
+		_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoColorBlackFaces),
+	left: A2(
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$mapColorBlackFaces,
+		_elm_community$linear_algebra$Math_Matrix4$transform(
+			A2(
+				_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+				0.5 * _elm_lang$core$Basics$pi,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0))),
+		_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoColorBlackFaces),
+	right: A2(
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$mapColorBlackFaces,
+		_elm_community$linear_algebra$Math_Matrix4$transform(
+			A2(
+				_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+				-0.5 * _elm_lang$core$Basics$pi,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0))),
+		_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoColorBlackFaces),
+	top: A2(
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$mapColorBlackFaces,
+		_elm_community$linear_algebra$Math_Matrix4$transform(
+			A2(
+				_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+				0.5 * _elm_lang$core$Basics$pi,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0))),
+		_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoColorBlackFaces),
+	down: A2(
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$mapColorBlackFaces,
+		_elm_community$linear_algebra$Math_Matrix4$transform(
+			A2(
+				_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+				-0.5 * _elm_lang$core$Basics$pi,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0))),
+		_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoColorBlackFaces)
+};
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$wegGlDimension = 1;
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$lowerBorderCube = 0 - _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$wegGlDimension;
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$upperBorderCube = _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$wegGlDimension;
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$ribLengthCube = _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$upperBorderCube - _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$lowerBorderCube;
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$ribLengthBLock = _elm_lang$core$Basics$toFloat(_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$ribLengthCube) / _elm_lang$core$Basics$toFloat(_elm_lang$elm_architecture_tutorial$Rib$size);
+var _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoAllFaces = function () {
+	var shift = _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$lowerBorderCube - (_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$ribLengthBLock / 2);
+	return A2(
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$mapAllSideFaces,
+		_elm_community$linear_algebra$Math_Matrix4$transform(
+			A3(_elm_community$linear_algebra$Math_Matrix4$makeTranslate3, shift, shift, shift)),
+		_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$preProtoAllFaces);
+}();

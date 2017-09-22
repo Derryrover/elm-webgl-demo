@@ -1,0 +1,81 @@
+var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
+	var lbb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, -1);
+	var lfb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, -1);
+	var rfb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, -1);
+	var rbb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, -1);
+	var rbt = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1);
+	var lbt = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1);
+	var lft = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1);
+	var rft = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1);
+	return function (_p0) {
+		return _elm_community$webgl$WebGL$triangles(
+			_elm_lang$core$List$concat(_p0));
+	}(
+		{
+			ctor: '::',
+			_0: A6(
+				_elm_lang$elm_architecture_tutorial$CubeFace$face,
+				_elm_lang$core$Color$green,
+				rft,
+				rfb,
+				rbb,
+				rbt,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0)),
+			_1: {
+				ctor: '::',
+				_0: A6(
+					_elm_lang$elm_architecture_tutorial$CubeFace$face,
+					_elm_lang$core$Color$blue,
+					rft,
+					rfb,
+					lfb,
+					lft,
+					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
+				_1: {
+					ctor: '::',
+					_0: A6(
+						_elm_lang$elm_architecture_tutorial$CubeFace$face,
+						_elm_lang$core$Color$yellow,
+						rft,
+						lft,
+						lbt,
+						rbt,
+						A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 1)),
+					_1: {
+						ctor: '::',
+						_0: A6(
+							_elm_lang$elm_architecture_tutorial$CubeFace$face,
+							_elm_lang$core$Color$red,
+							rfb,
+							lfb,
+							lbb,
+							rbb,
+							A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, -1)),
+						_1: {
+							ctor: '::',
+							_0: A6(
+								_elm_lang$elm_architecture_tutorial$CubeFace$face,
+								_elm_lang$core$Color$purple,
+								lft,
+								lfb,
+								lbb,
+								lbt,
+								A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, 0)),
+							_1: {
+								ctor: '::',
+								_0: A6(
+									_elm_lang$elm_architecture_tutorial$CubeFace$face,
+									_elm_lang$core$Color$orange,
+									rbt,
+									rbb,
+									lbb,
+									lbt,
+									A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -1, 0)),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		});
+}();

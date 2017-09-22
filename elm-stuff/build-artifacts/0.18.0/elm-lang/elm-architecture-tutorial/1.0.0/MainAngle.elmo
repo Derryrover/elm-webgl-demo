@@ -1,0 +1,9 @@
+var _elm_lang$elm_architecture_tutorial$MainAngle$calculateMoveRowAngle = F2(
+	function (old, delta) {
+		return old + (delta / 300);
+	});
+var _elm_lang$elm_architecture_tutorial$MainAngle$calculateAngle = F2(
+	function (old, delta) {
+		var $new = old + (delta / 5000);
+		return A2(_elm_lang$elm_architecture_tutorial$Arithmetic$modFloat, $new, 2 * _elm_lang$core$Basics$pi);
+	});

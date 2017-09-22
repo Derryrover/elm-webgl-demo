@@ -1,0 +1,242 @@
+var _elm_lang$elm_architecture_tutorial$BlockToVertex$toVertexListPlusFace3Colors = function (colorList) {
+	return _elm_lang$core$Native_Utils.update(
+		colorList,
+		{
+			black: _elm_lang$core$List$concat(
+				A2(_elm_lang$core$List$map, _elm_lang$elm_architecture_tutorial$CubeFace$toFace3Vertex, colorList.black))
+		});
+};
+var _elm_lang$elm_architecture_tutorial$BlockToVertex$toVertexListPlusColors = function (colorList) {
+	return _elm_lang$core$Native_Utils.update(
+		colorList,
+		{
+			black: A2(
+				_elm_lang$core$List$map,
+				_elm_lang$elm_architecture_tutorial$CubeFace$face(_elm_lang$core$Color$black),
+				colorList.black)
+		});
+};
+var _elm_lang$elm_architecture_tutorial$BlockToVertex$xyzRowToAllFaces = function (_p0) {
+	var _p1 = _p0;
+	var shift = _elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$ribLengthBLock;
+	return A2(
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$mapAllSideFaces,
+		_elm_community$linear_algebra$Math_Matrix4$transform(
+			A3(
+				_elm_community$linear_algebra$Math_Matrix4$makeTranslate3,
+				shift * _elm_lang$core$Basics$toFloat(_p1.x),
+				shift * _elm_lang$core$Basics$toFloat(_p1.y),
+				shift * _elm_lang$core$Basics$toFloat(_p1.z))),
+		_elm_lang$elm_architecture_tutorial$BlockToVertexPrototype$protoAllFaces);
+};
+var _elm_lang$elm_architecture_tutorial$BlockToVertex$xyzRowColorToListFaces = function (xyz) {
+	var directionZ = _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionZAxis(xyz.z);
+	var directionY = _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionYAxis(xyz.y);
+	var directionX = _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionXAxis(xyz.x);
+	var allFaces = _elm_lang$elm_architecture_tutorial$BlockToVertex$xyzRowToAllFaces(xyz);
+	var colorX = A2(
+		_elm_lang$core$Maybe$map,
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$getVertexFromDirection(allFaces),
+		directionX);
+	var colorY = A2(
+		_elm_lang$core$Maybe$map,
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$getVertexFromDirection(allFaces),
+		directionY);
+	var colorZ = A2(
+		_elm_lang$core$Maybe$map,
+		_elm_lang$elm_architecture_tutorial$BlockToVertexModel$getVertexFromDirection(allFaces),
+		directionZ);
+	var listColorX = function () {
+		var _p2 = colorX;
+		if (_p2.ctor === 'Nothing') {
+			return {
+				black: {
+					ctor: '::',
+					_0: allFaces.left.black,
+					_1: {
+						ctor: '::',
+						_0: allFaces.right.black,
+						_1: {ctor: '[]'}
+					}
+				},
+				color: _elm_lang$core$Maybe$Nothing
+			};
+		} else {
+			return _elm_lang$elm_architecture_tutorial$BlockToVertexModel$toBlackFacesAndSingleColorFace(_p2._0);
+		}
+	}();
+	var listColorY = function () {
+		var _p3 = colorY;
+		if (_p3.ctor === 'Nothing') {
+			return {
+				black: {
+					ctor: '::',
+					_0: allFaces.top.black,
+					_1: {
+						ctor: '::',
+						_0: allFaces.down.black,
+						_1: {ctor: '[]'}
+					}
+				},
+				color: _elm_lang$core$Maybe$Nothing
+			};
+		} else {
+			return _elm_lang$elm_architecture_tutorial$BlockToVertexModel$toBlackFacesAndSingleColorFace(_p3._0);
+		}
+	}();
+	var listColorZ = function () {
+		var _p4 = colorZ;
+		if (_p4.ctor === 'Nothing') {
+			return {
+				black: {
+					ctor: '::',
+					_0: allFaces.front.black,
+					_1: {
+						ctor: '::',
+						_0: allFaces.back.black,
+						_1: {ctor: '[]'}
+					}
+				},
+				color: _elm_lang$core$Maybe$Nothing
+			};
+		} else {
+			return _elm_lang$elm_architecture_tutorial$BlockToVertexModel$toBlackFacesAndSingleColorFace(_p4._0);
+		}
+	}();
+	return {
+		x: listColorX.color,
+		y: listColorY.color,
+		z: listColorZ.color,
+		black: _elm_lang$core$List$concat(
+			{
+				ctor: '::',
+				_0: listColorX.black,
+				_1: {
+					ctor: '::',
+					_0: listColorY.black,
+					_1: {
+						ctor: '::',
+						_0: listColorZ.black,
+						_1: {ctor: '[]'}
+					}
+				}
+			})
+	};
+};
+var _elm_lang$elm_architecture_tutorial$BlockToVertex$xyzRowToVertexListPlusFace3Colors = function (xyz) {
+	var xyzColorsListBlack = _elm_lang$elm_architecture_tutorial$BlockToVertex$xyzRowColorToListFaces(xyz);
+	var vertexListPlusColors = _elm_lang$elm_architecture_tutorial$BlockToVertex$toVertexListPlusColors(xyzColorsListBlack);
+	var vertexListPlusFace3Colors = _elm_lang$elm_architecture_tutorial$BlockToVertex$toVertexListPlusFace3Colors(vertexListPlusColors);
+	return vertexListPlusFace3Colors;
+};
+var _elm_lang$elm_architecture_tutorial$BlockToVertex$allFacesDict = function () {
+	var empty = _elm_lang$core$Dict$empty;
+	return A3(
+		_elm_lang$core$List$foldl,
+		F2(
+			function (block, dict) {
+				return A3(
+					_elm_lang$core$Dict$insert,
+					{ctor: '_Tuple3', _0: block.rows.x, _1: block.rows.y, _2: block.rows.z},
+					_elm_lang$elm_architecture_tutorial$BlockToVertex$xyzRowToVertexListPlusFace3Colors(block.rows),
+					dict);
+			}),
+		empty,
+		_elm_lang$elm_architecture_tutorial$BlockBuilder$allBlocks);
+}();
+var _elm_lang$elm_architecture_tutorial$BlockToVertex$getFromDict = function (_p5) {
+	var _p6 = _p5;
+	return A2(
+		_elm_lang$core$Dict$get,
+		{ctor: '_Tuple3', _0: _p6.x, _1: _p6.y, _2: _p6.z},
+		_elm_lang$elm_architecture_tutorial$BlockToVertex$allFacesDict);
+};
+var _elm_lang$elm_architecture_tutorial$BlockToVertex$singleBlockToVertexList = function (_p7) {
+	var _p8 = _p7;
+	var _p14 = _p8.colors;
+	var vertexListPlusFace3Colors = _elm_lang$elm_architecture_tutorial$BlockToVertex$getFromDict(_p8.rows);
+	var _p9 = vertexListPlusFace3Colors;
+	if (_p9.ctor === 'Nothing') {
+		return {ctor: '[]'};
+	} else {
+		var _p13 = _p9._0;
+		var zFace = A2(
+			_elm_lang$core$Maybe$andThen,
+			function (face) {
+				return A2(
+					_elm_lang$core$Maybe$map,
+					function (color) {
+						return A2(_elm_lang$elm_architecture_tutorial$CubeFace$face, color, face);
+					},
+					_p14.z);
+			},
+			_p13.z);
+		var zMList = A2(_elm_lang$core$Maybe$map, _elm_lang$elm_architecture_tutorial$CubeFace$toFace3Vertex, zFace);
+		var zList = function () {
+			var _p10 = zMList;
+			if (_p10.ctor === 'Nothing') {
+				return {ctor: '[]'};
+			} else {
+				return _p10._0;
+			}
+		}();
+		var yFace = A2(
+			_elm_lang$core$Maybe$andThen,
+			function (face) {
+				return A2(
+					_elm_lang$core$Maybe$map,
+					function (color) {
+						return A2(_elm_lang$elm_architecture_tutorial$CubeFace$face, color, face);
+					},
+					_p14.y);
+			},
+			_p13.y);
+		var yMList = A2(_elm_lang$core$Maybe$map, _elm_lang$elm_architecture_tutorial$CubeFace$toFace3Vertex, yFace);
+		var yList = function () {
+			var _p11 = yMList;
+			if (_p11.ctor === 'Nothing') {
+				return {ctor: '[]'};
+			} else {
+				return _p11._0;
+			}
+		}();
+		var xFace = A2(
+			_elm_lang$core$Maybe$andThen,
+			function (face) {
+				return A2(
+					_elm_lang$core$Maybe$map,
+					function (color) {
+						return A2(_elm_lang$elm_architecture_tutorial$CubeFace$face, color, face);
+					},
+					_p14.x);
+			},
+			_p13.x);
+		var xMList = A2(_elm_lang$core$Maybe$map, _elm_lang$elm_architecture_tutorial$CubeFace$toFace3Vertex, xFace);
+		var xList = function () {
+			var _p12 = xMList;
+			if (_p12.ctor === 'Nothing') {
+				return {ctor: '[]'};
+			} else {
+				return _p12._0;
+			}
+		}();
+		return _elm_lang$core$List$concat(
+			{
+				ctor: '::',
+				_0: xList,
+				_1: {
+					ctor: '::',
+					_0: yList,
+					_1: {
+						ctor: '::',
+						_0: zList,
+						_1: {
+							ctor: '::',
+							_0: _p13.black,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			});
+	}
+};

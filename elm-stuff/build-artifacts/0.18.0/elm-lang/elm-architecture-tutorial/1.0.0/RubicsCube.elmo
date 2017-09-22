@@ -1,0 +1,328 @@
+var _elm_lang$elm_architecture_tutorial$RubicsCube$onMouseDown = A2(
+	_elm_lang$html$Html_Events$on,
+	'mousedown',
+	A2(_elm_lang$core$Json_Decode$map, _elm_lang$elm_architecture_tutorial$MainMessage$DragStart, _elm_lang$mouse$Mouse$position));
+var _elm_lang$elm_architecture_tutorial$RubicsCube_ops = _elm_lang$elm_architecture_tutorial$RubicsCube_ops || {};
+_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'] = F2(
+	function (v0, v1) {
+		return {ctor: '_Tuple2', _0: v0, _1: v1};
+	});
+var _elm_lang$elm_architecture_tutorial$RubicsCube$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$RubicsCube$onMouseDown,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'height', '100%'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'height', '100%'),
+							_1: {
+								ctor: '::',
+								_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'display', 'flex'),
+								_1: {
+									ctor: '::',
+									_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'justify-content', 'center'),
+									_1: {
+										ctor: '::',
+										_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'align-items', 'center'),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_community$webgl$WebGL$toHtml,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$id('js_cubicle_canvas'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$width(800),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$height(800),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'height', '70%'),
+												_1: {
+													ctor: '::',
+													_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'display', 'block'),
+													_1: {
+														ctor: '::',
+														_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'margin', 'auto'),
+														_1: {ctor: '[]'}
+													}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						},
+						_elm_lang$core$List$concat(
+							{
+								ctor: '::',
+								_0: _elm_lang$elm_architecture_tutorial$SpinCubeGl$sceneSpinRow(model),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$elm_architecture_tutorial$SpinCubeGl$sceneRest(model),
+									_1: {ctor: '[]'}
+								}
+							})),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_elm_community$webgl$WebGL$toHtmlWith,
+							{
+								ctor: '::',
+								_0: _elm_community$webgl$WebGL$alpha(false),
+								_1: {
+									ctor: '::',
+									_0: _elm_community$webgl$WebGL$depth(1),
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$width(800),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$height(800),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'height', '100%'),
+												_1: {
+													ctor: '::',
+													_0: A2(_elm_lang$elm_architecture_tutorial$RubicsCube_ops['=>'], 'display', 'none'),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$id('js_color_picker'),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							},
+							_elm_lang$elm_architecture_tutorial$SpinCubeGl$scenePicker(model)),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _elm_lang$elm_architecture_tutorial$RubicsCube$updateLastMoveByColor = F4(
+	function (model, face, x, y) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				lastMove: A4(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$calculateMove, model.rotationMatrix, x, y, face),
+				movingRow: true
+			});
+	});
+var _elm_lang$elm_architecture_tutorial$RubicsCube$sendCoordinates = _elm_lang$core$Native_Platform.outgoingPort(
+	'sendCoordinates',
+	function (v) {
+		return v;
+	});
+var _elm_lang$elm_architecture_tutorial$RubicsCube$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'DragStart':
+				var _p2 = _p0._0;
+				var _p1 = model.movingRow;
+				if (_p1 === false) {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								formerDragX: _elm_lang$core$Basics$toFloat(_p2.x),
+								formerDragY: _elm_lang$core$Basics$toFloat(_p2.y),
+								beginDragX: _elm_lang$core$Basics$toFloat(_p2.x),
+								beginDragY: _elm_lang$core$Basics$toFloat(_p2.y),
+								dragging: true
+							}),
+						_1: _elm_lang$elm_architecture_tutorial$RubicsCube$sendCoordinates(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString(_p2.x),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									',',
+									_elm_lang$core$Basics$toString(_p2.y))))
+					};
+				} else {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+			case 'DragAt':
+				var _p7 = _p0._0;
+				var _p3 = model.dragging;
+				if (_p3 === true) {
+					var _p4 = model.colorPicked;
+					if (_p4.ctor === 'Just') {
+						var _p5 = model.movingRow;
+						if (_p5 === true) {
+							return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+						} else {
+							var _p6 = _elm_lang$core$Native_Utils.cmp(
+								_elm_lang$core$Basics$abs(
+									model.beginDragX - _elm_lang$core$Basics$toFloat(_p7.x)) + _elm_lang$core$Basics$abs(
+									model.beginDragY - _elm_lang$core$Basics$toFloat(_p7.y)),
+								80) > 0;
+							if (_p6 === false) {
+								return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+							} else {
+								return {
+									ctor: '_Tuple2',
+									_0: A4(
+										_elm_lang$elm_architecture_tutorial$RubicsCube$updateLastMoveByColor,
+										model,
+										_p4._0,
+										model.beginDragY - _elm_lang$core$Basics$toFloat(_p7.y),
+										model.beginDragX - _elm_lang$core$Basics$toFloat(_p7.x)),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+							}
+						}
+					} else {
+						return {
+							ctor: '_Tuple2',
+							_0: _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									rotationMatrix: A3(
+										_elm_lang$elm_architecture_tutorial$CalculateViewFromDrag$calculateView,
+										model.rotationMatrix,
+										(model.formerDragY - _elm_lang$core$Basics$toFloat(_p7.y)) / 180,
+										(model.formerDragX - _elm_lang$core$Basics$toFloat(_p7.x)) / 180),
+									formerDragX: _elm_lang$core$Basics$toFloat(_p7.x),
+									formerDragY: _elm_lang$core$Basics$toFloat(_p7.y)
+								}),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					}
+				} else {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+			case 'DragEnd':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{formerDragX: 0, formerDragY: 0, dragging: false}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Frame':
+				var _p8 = model.movingRow;
+				if (_p8 === false) {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				} else {
+					return A2(_elm_lang$elm_architecture_tutorial$MainUpdateFrame$updateFrame, model, _p0._0);
+				}
+			case 'MoveRow':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{lastMove: _p0._0, movingRow: true}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'EndMove':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							cube: A2(_elm_lang$elm_architecture_tutorial$BlockTransformations$turnRow, model.lastMove, model.cube),
+							moves: {ctor: '::', _0: model.lastMove, _1: model.moves},
+							movingRowAngle: 0,
+							movingRow: false,
+							colorPicked: _elm_lang$core$Maybe$Nothing,
+							dragging: false
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							colorPicked: _elm_lang$elm_architecture_tutorial$ColorPicker$getByColor(_p0._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
+	});
+var _elm_lang$elm_architecture_tutorial$RubicsCube$listenForColors = _elm_lang$core$Native_Platform.incomingPort('listenForColors', _elm_lang$core$Json_Decode$string);
+var _elm_lang$elm_architecture_tutorial$RubicsCube$subscriptions = function (model) {
+	var _p9 = model.dragging;
+	if (_p9 === true) {
+		return _elm_lang$core$Platform_Sub$batch(
+			{
+				ctor: '::',
+				_0: _elm_lang$animation_frame$AnimationFrame$diffs(_elm_lang$elm_architecture_tutorial$MainMessage$Frame),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$mouse$Mouse$moves(_elm_lang$elm_architecture_tutorial$MainMessage$DragAt),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$mouse$Mouse$ups(_elm_lang$elm_architecture_tutorial$MainMessage$DragEnd),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$elm_architecture_tutorial$RubicsCube$listenForColors(_elm_lang$elm_architecture_tutorial$MainMessage$MoveColor),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			});
+	} else {
+		return _elm_lang$core$Platform_Sub$batch(
+			{
+				ctor: '::',
+				_0: _elm_lang$animation_frame$AnimationFrame$diffs(_elm_lang$elm_architecture_tutorial$MainMessage$Frame),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$elm_architecture_tutorial$RubicsCube$listenForColors(_elm_lang$elm_architecture_tutorial$MainMessage$MoveColor),
+					_1: {ctor: '[]'}
+				}
+			});
+	}
+};
+var _elm_lang$elm_architecture_tutorial$RubicsCube$main = _elm_lang$html$Html$program(
+	{init: _elm_lang$elm_architecture_tutorial$MainModel$init, view: _elm_lang$elm_architecture_tutorial$RubicsCube$view, subscriptions: _elm_lang$elm_architecture_tutorial$RubicsCube$subscriptions, update: _elm_lang$elm_architecture_tutorial$RubicsCube$update})();
+var _elm_lang$elm_architecture_tutorial$RubicsCube$Drag = F2(
+	function (a, b) {
+		return {start: a, current: b};
+	});

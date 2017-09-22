@@ -1,0 +1,4 @@
+var _elm_lang$elm_architecture_tutorial$Vertex$Vertex = F3(
+	function (a, b, c) {
+		return {color: a, position: b, normal: c};
+	});

@@ -1,0 +1,22 @@
+var _elm_lang$elm_architecture_tutorial$Uniforms$uniforms = F2(
+	function (x, y) {
+		return {
+			rotation: A2(
+				_elm_community$linear_algebra$Math_Matrix4$mul,
+				A2(
+					_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+					3 * x,
+					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
+				A2(
+					_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+					2 * y,
+					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0))),
+			perspective: A4(_elm_community$linear_algebra$Math_Matrix4$makePerspective, 45, 1, 1.0e-2, 100),
+			camera: A3(
+				_elm_community$linear_algebra$Math_Matrix4$makeLookAt,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 5),
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 0),
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
+			shade: 1.0
+		};
+	});

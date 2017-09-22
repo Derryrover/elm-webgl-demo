@@ -1,0 +1,19 @@
+var _elm_lang$elm_architecture_tutorial$MainMessage$MoveColor = function (a) {
+	return {ctor: 'MoveColor', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$MainMessage$DragEnd = function (a) {
+	return {ctor: 'DragEnd', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$MainMessage$DragAt = function (a) {
+	return {ctor: 'DragAt', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$MainMessage$DragStart = function (a) {
+	return {ctor: 'DragStart', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$MainMessage$EndMove = {ctor: 'EndMove'};
+var _elm_lang$elm_architecture_tutorial$MainMessage$MoveRow = function (a) {
+	return {ctor: 'MoveRow', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$MainMessage$Frame = function (a) {
+	return {ctor: 'Frame', _0: a};
+};

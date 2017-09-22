@@ -1,0 +1,144 @@
+var _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getRadiansAbsoluteDifference = F2(
+	function (a, b) {
+		var diff = _elm_lang$core$Basics$abs(a - b);
+		var _p0 = _elm_lang$core$Native_Utils.cmp(diff, _elm_lang$core$Basics$pi) > 0;
+		if (_p0 === false) {
+			return diff;
+		} else {
+			return _elm_lang$core$Basics$pi - (diff - _elm_lang$core$Basics$pi);
+		}
+	});
+var _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$a = 1;
+var _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$Down = {ctor: 'Down'};
+var _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$Up = {ctor: 'Up'};
+var _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$Right = {ctor: 'Right'};
+var _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$Left = {ctor: 'Left'};
+var _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getClosestDirection = F5(
+	function (left, right, up, down, direction) {
+		var deltaDown = A2(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getRadiansAbsoluteDifference, direction, down);
+		var deltaUp = A2(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getRadiansAbsoluteDifference, direction, up);
+		var deltaRight = A2(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getRadiansAbsoluteDifference, direction, right);
+		var deltaLeft = A2(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getRadiansAbsoluteDifference, direction, left);
+		return ((_elm_lang$core$Native_Utils.cmp(deltaLeft, deltaRight) < 0) && ((_elm_lang$core$Native_Utils.cmp(deltaLeft, deltaUp) < 0) && (_elm_lang$core$Native_Utils.cmp(deltaLeft, deltaDown) < 0))) ? _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$Left : (((_elm_lang$core$Native_Utils.cmp(deltaRight, deltaUp) < 0) && (_elm_lang$core$Native_Utils.cmp(deltaRight, deltaDown) < 0)) ? _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$Right : ((_elm_lang$core$Native_Utils.cmp(deltaUp, deltaDown) < 0) ? _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$Up : _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$Down));
+	});
+var _elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$calculateMove = F4(
+	function (rotationMatrix, x, y, face) {
+		var dirD = A2(_elm_lang$core$Basics$atan2, x, y);
+		var vecZ = A2(
+			_elm_community$linear_algebra$Math_Matrix4$transform,
+			rotationMatrix,
+			A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 1));
+		var dirZ = A2(
+			_elm_lang$core$Basics$atan2,
+			_elm_community$linear_algebra$Math_Vector3$getX(vecZ),
+			_elm_community$linear_algebra$Math_Vector3$getY(vecZ));
+		var dirMZ = A2(
+			_elm_lang$core$Basics$atan2,
+			0 - _elm_community$linear_algebra$Math_Vector3$getX(vecZ),
+			0 - _elm_community$linear_algebra$Math_Vector3$getY(vecZ));
+		var vecY = A2(
+			_elm_community$linear_algebra$Math_Matrix4$transform,
+			rotationMatrix,
+			A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0));
+		var dirY = A2(
+			_elm_lang$core$Basics$atan2,
+			_elm_community$linear_algebra$Math_Vector3$getX(vecY),
+			_elm_community$linear_algebra$Math_Vector3$getY(vecY));
+		var dirMY = A2(
+			_elm_lang$core$Basics$atan2,
+			0 - _elm_community$linear_algebra$Math_Vector3$getX(vecY),
+			0 - _elm_community$linear_algebra$Math_Vector3$getY(vecY));
+		var vecX = A2(
+			_elm_community$linear_algebra$Math_Matrix4$transform,
+			rotationMatrix,
+			A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0));
+		var dirX = A2(
+			_elm_lang$core$Basics$atan2,
+			_elm_community$linear_algebra$Math_Vector3$getX(vecX),
+			_elm_community$linear_algebra$Math_Vector3$getY(vecX));
+		var dirMX = A2(
+			_elm_lang$core$Basics$atan2,
+			0 - _elm_community$linear_algebra$Math_Vector3$getX(vecX),
+			0 - _elm_community$linear_algebra$Math_Vector3$getY(vecX));
+		var _p1 = face.direction;
+		switch (_p1.ctor) {
+			case 'Top':
+				var dir = A5(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getClosestDirection, dirX, dirMX, dirZ, dirMZ, dirD);
+				var _p2 = dir;
+				switch (_p2.ctor) {
+					case 'Left':
+						return {row: face.rows.x, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$X};
+					case 'Right':
+						return {row: face.rows.x, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$X};
+					case 'Up':
+						return {row: face.rows.z, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Z};
+					default:
+						return {row: face.rows.z, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Z};
+				}
+			case 'Down':
+				var dir = A5(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getClosestDirection, dirX, dirMX, dirZ, dirMZ, dirD);
+				var _p3 = dir;
+				switch (_p3.ctor) {
+					case 'Left':
+						return {row: face.rows.x, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$X};
+					case 'Right':
+						return {row: face.rows.x, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$X};
+					case 'Up':
+						return {row: face.rows.z, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Z};
+					default:
+						return {row: face.rows.z, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Z};
+				}
+			case 'Left':
+				var dir = A5(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getClosestDirection, dirY, dirMY, dirZ, dirMZ, dirD);
+				var _p4 = dir;
+				switch (_p4.ctor) {
+					case 'Left':
+						return {row: face.rows.y, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Y};
+					case 'Right':
+						return {row: face.rows.y, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Y};
+					case 'Up':
+						return {row: face.rows.z, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Z};
+					default:
+						return {row: face.rows.z, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Z};
+				}
+			case 'Right':
+				var dir = A5(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getClosestDirection, dirY, dirMY, dirZ, dirMZ, dirD);
+				var _p5 = dir;
+				switch (_p5.ctor) {
+					case 'Left':
+						return {row: face.rows.y, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Y};
+					case 'Right':
+						return {row: face.rows.y, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Y};
+					case 'Up':
+						return {row: face.rows.z, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Z};
+					default:
+						return {row: face.rows.z, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Z};
+				}
+			case 'Front':
+				var dir = A5(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getClosestDirection, dirX, dirMX, dirY, dirMY, dirD);
+				var _p6 = dir;
+				switch (_p6.ctor) {
+					case 'Left':
+						return {row: face.rows.x, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$X};
+					case 'Right':
+						return {row: face.rows.x, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$X};
+					case 'Up':
+						return {row: face.rows.y, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Y};
+					default:
+						return {row: face.rows.y, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Y};
+				}
+			default:
+				var dir = A5(_elm_lang$elm_architecture_tutorial$RotationDirectionFromDrag$getClosestDirection, dirX, dirMX, dirY, dirMY, dirD);
+				var _p7 = dir;
+				switch (_p7.ctor) {
+					case 'Left':
+						return {row: face.rows.x, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$X};
+					case 'Right':
+						return {row: face.rows.x, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$X};
+					case 'Up':
+						return {row: face.rows.y, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Anti, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Y};
+					default:
+						return {row: face.rows.y, turn: _elm_lang$elm_architecture_tutorial$BlockModel$Clock, axis: _elm_lang$elm_architecture_tutorial$BlockModel$Y};
+				}
+		}
+	});

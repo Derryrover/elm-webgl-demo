@@ -1,0 +1,16 @@
+var _elm_lang$elm_architecture_tutorial$BlockBuilder$mapSingleBlock = function (xyz) {
+	return {
+		rows: xyz,
+		colors: _elm_lang$elm_architecture_tutorial$BlockModelDirection$xyzRowToXYZColor(xyz)
+	};
+};
+var _elm_lang$elm_architecture_tutorial$BlockBuilder$coordinates = A4(
+	_elm_community$list_extra$List_Extra$lift3,
+	F3(
+		function (x, y, z) {
+			return {x: x, y: y, z: z};
+		}),
+	_elm_lang$elm_architecture_tutorial$Rib$range,
+	_elm_lang$elm_architecture_tutorial$Rib$range,
+	_elm_lang$elm_architecture_tutorial$Rib$range);
+var _elm_lang$elm_architecture_tutorial$BlockBuilder$allBlocks = A2(_elm_lang$core$List$map, _elm_lang$elm_architecture_tutorial$BlockBuilder$mapSingleBlock, _elm_lang$elm_architecture_tutorial$BlockBuilder$coordinates);

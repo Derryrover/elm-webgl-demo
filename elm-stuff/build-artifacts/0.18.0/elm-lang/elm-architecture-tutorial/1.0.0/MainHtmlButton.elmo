@@ -1,0 +1,17 @@
+var _elm_lang$elm_architecture_tutorial$MainHtmlButton$buttonCreator = F3(
+	function (axis, turn, row) {
+		return A2(
+			_elm_lang$html$Html$button,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(
+					_elm_lang$elm_architecture_tutorial$MainMessage$MoveRow(
+						{row: row, turn: turn, axis: axis})),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('Turn'),
+				_1: {ctor: '[]'}
+			});
+	});

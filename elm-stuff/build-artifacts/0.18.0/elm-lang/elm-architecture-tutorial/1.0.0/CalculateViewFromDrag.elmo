@@ -1,0 +1,14 @@
+var _elm_lang$elm_architecture_tutorial$CalculateViewFromDrag$calculateView = F3(
+	function (matrix, x, y) {
+		var dragMatrix = A2(
+			_elm_community$linear_algebra$Math_Matrix4$mul,
+			A2(
+				_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+				x,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, 0)),
+			A2(
+				_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+				y,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -1, 0)));
+		return A2(_elm_community$linear_algebra$Math_Matrix4$mul, dragMatrix, matrix);
+	});

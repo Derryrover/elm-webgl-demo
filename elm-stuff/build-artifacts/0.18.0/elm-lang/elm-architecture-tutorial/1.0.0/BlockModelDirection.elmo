@@ -1,0 +1,35 @@
+var _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionZAxis = function (row) {
+	return _elm_lang$core$Native_Utils.eq(row, 1) ? _elm_lang$core$Maybe$Just(_elm_lang$elm_architecture_tutorial$BlockModel$Back) : (_elm_lang$core$Native_Utils.eq(row, _elm_lang$elm_architecture_tutorial$Rib$size) ? _elm_lang$core$Maybe$Just(_elm_lang$elm_architecture_tutorial$BlockModel$Front) : _elm_lang$core$Maybe$Nothing);
+};
+var _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionYAxis = function (row) {
+	return _elm_lang$core$Native_Utils.eq(row, 1) ? _elm_lang$core$Maybe$Just(_elm_lang$elm_architecture_tutorial$BlockModel$Top) : (_elm_lang$core$Native_Utils.eq(row, _elm_lang$elm_architecture_tutorial$Rib$size) ? _elm_lang$core$Maybe$Just(_elm_lang$elm_architecture_tutorial$BlockModel$Down) : _elm_lang$core$Maybe$Nothing);
+};
+var _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionXAxis = function (row) {
+	return _elm_lang$core$Native_Utils.eq(row, 1) ? _elm_lang$core$Maybe$Just(_elm_lang$elm_architecture_tutorial$BlockModel$Right) : (_elm_lang$core$Native_Utils.eq(row, _elm_lang$elm_architecture_tutorial$Rib$size) ? _elm_lang$core$Maybe$Just(_elm_lang$elm_architecture_tutorial$BlockModel$Left) : _elm_lang$core$Maybe$Nothing);
+};
+var _elm_lang$elm_architecture_tutorial$BlockModelDirection$directionToInitialColor = function (dir) {
+	var _p0 = dir;
+	switch (_p0.ctor) {
+		case 'Top':
+			return _elm_lang$core$Color$red;
+		case 'Down':
+			return _elm_lang$core$Color$green;
+		case 'Left':
+			return _elm_lang$core$Color$blue;
+		case 'Right':
+			return _elm_lang$core$Color$orange;
+		case 'Front':
+			return _elm_lang$core$Color$yellow;
+		default:
+			return _elm_lang$core$Color$white;
+	}
+};
+var _elm_lang$elm_architecture_tutorial$BlockModelDirection$xyzRowToXYZColor = function (xyz) {
+	var zDirection = _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionZAxis(xyz.z);
+	var zColor = A2(_elm_lang$core$Maybe$map, _elm_lang$elm_architecture_tutorial$BlockModelDirection$directionToInitialColor, zDirection);
+	var yDirection = _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionYAxis(xyz.y);
+	var yColor = A2(_elm_lang$core$Maybe$map, _elm_lang$elm_architecture_tutorial$BlockModelDirection$directionToInitialColor, yDirection);
+	var xDirection = _elm_lang$elm_architecture_tutorial$BlockModelDirection$getDirectionXAxis(xyz.x);
+	var xColor = A2(_elm_lang$core$Maybe$map, _elm_lang$elm_architecture_tutorial$BlockModelDirection$directionToInitialColor, xDirection);
+	return {x: xColor, y: yColor, z: zColor};
+};

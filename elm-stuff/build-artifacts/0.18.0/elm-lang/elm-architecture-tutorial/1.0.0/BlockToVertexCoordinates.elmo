@@ -1,0 +1,48 @@
+var _elm_lang$elm_architecture_tutorial$BlockToVertexCoordinates$preProtoBlackFace = {
+	ctor: '_Tuple4',
+	_0: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1),
+	_1: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1),
+	_2: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_3: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1)
+};
+var _elm_lang$elm_architecture_tutorial$BlockToVertexCoordinates$colorFaceSize = 0.85;
+var _elm_lang$elm_architecture_tutorial$BlockToVertexCoordinates$preProtoColorFace = function () {
+	var x = _elm_lang$elm_architecture_tutorial$BlockToVertexCoordinates$colorFaceSize;
+	return {
+		center: {
+			ctor: '_Tuple4',
+			_0: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0 - x, 0 - x, 1),
+			_1: A3(_elm_community$linear_algebra$Math_Vector3$vec3, x, 0 - x, 1),
+			_2: A3(_elm_community$linear_algebra$Math_Vector3$vec3, x, x, 1),
+			_3: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0 - x, x, 1)
+		},
+		top: {
+			ctor: '_Tuple4',
+			_0: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, x, 1),
+			_1: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, x, 1),
+			_2: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+			_3: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1)
+		},
+		down: {
+			ctor: '_Tuple4',
+			_0: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1),
+			_1: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1),
+			_2: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0 - x, 1),
+			_3: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0 - x, 1)
+		},
+		left: {
+			ctor: '_Tuple4',
+			_0: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0 - x, 1),
+			_1: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0 - x, 0 - x, 1),
+			_2: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0 - x, x, 1),
+			_3: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, x, 1)
+		},
+		right: {
+			ctor: '_Tuple4',
+			_0: A3(_elm_community$linear_algebra$Math_Vector3$vec3, x, 0 - x, 1),
+			_1: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0 - x, 1),
+			_2: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, x, 1),
+			_3: A3(_elm_community$linear_algebra$Math_Vector3$vec3, x, x, 1)
+		}
+	};
+}();
