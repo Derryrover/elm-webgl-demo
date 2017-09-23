@@ -1,0 +1,74 @@
+var _elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg = F2(
+	function (model, dt) {
+		var _p0 = model.spin;
+		if (_p0 === true) {
+			return {
+				ctor: '_Tuple2',
+				_0: {x: model.x + (dt / 5000), y: model.y + (dt / 10000), spin: model.spin},
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		} else {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
+var _elm_lang$elm_architecture_tutorial$MainState$update = F2(
+	function (msg, model) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
+			case 'AnimMsg':
+				return A2(_elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg, model, _p1._0);
+			case 'KeyMsg':
+				var _p2 = _p1._0;
+				switch (_p2) {
+					case 37:
+						return {
+							ctor: '_Tuple2',
+							_0: {x: model.x - 1.0e-2, y: model.y, spin: model.spin},
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					case 39:
+						return {
+							ctor: '_Tuple2',
+							_0: {x: model.x + 1.0e-2, y: model.y, spin: model.spin},
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					case 38:
+						return {
+							ctor: '_Tuple2',
+							_0: {x: model.x, y: model.y - 1.0e-2, spin: model.spin},
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					case 40:
+						return {
+							ctor: '_Tuple2',
+							_0: {x: model.x, y: model.y + 1.0e-2, spin: model.spin},
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					default:
+						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: {x: model.x, y: model.y, spin: !model.spin},
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
+	});
+var _elm_lang$elm_architecture_tutorial$MainState$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _elm_lang$animation_frame$AnimationFrame$diffs(_elm_lang$elm_architecture_tutorial$MainTypes$AnimMsg),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$keyboard$Keyboard$downs(_elm_lang$elm_architecture_tutorial$MainTypes$KeyMsg),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _elm_lang$elm_architecture_tutorial$MainState$init = {
+	ctor: '_Tuple2',
+	_0: {x: 0, y: 0, spin: false},
+	_1: _elm_lang$core$Platform_Cmd$none
+};

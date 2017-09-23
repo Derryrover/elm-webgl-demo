@@ -11891,6 +11891,226 @@ var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 
 var _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader = {'src': '\n\nprecision mediump float;\n\nuniform float shade; // needed?\n\nvarying vec3 vColor;\nvarying vec3 vTransformedNormal;\nvarying vec4 vPosition;\n\nvoid main () {\n\n    vec3 normal = normalize(vTransformedNormal);\n    vec3 eyeDirection = normalize( vPosition.xyz - vec3(0.0,0.0,5.0) );\n\n    vec3 ambientLight = vec3(0.6, 0.6, 0.6);\n    vec3 pointLightingColor = vec3(0.7, 0.7, 0.7);\n    vec3 pointLightingSpecularColor = vec3(0.3, 0.3, 0.3);\n    float materialShininess = 2.0;\n\n\n    vec3 lightDirection = vec3(0.0, 0.0, 5.0);\n    //vec3 relativeLightDirection = normalize( vPosition.xyz - lightDirection );\n    vec3 relativeLightDirection = normalize( vPosition.xyz - lightDirection);\n\n    //vec3 reflectionDirection = reflect(relativeLightDirection, normal); // original\n    vec3 reflectionDirection = reflect(-relativeLightDirection, normal); // original\n    //vec3 reflectionDirection = reflect(lightDirection, normal);\n\n    float specularLightWeighting = pow(max(dot(reflectionDirection, eyeDirection), 0.0), materialShininess);\n\n\n    float directionalLightWeighting = max(dot(normal, -relativeLightDirection), 0.0);\n    //float directionalLightWeighting = max(dot(normal, relativeLightDirection), 0.0);\n    //highp vec3 lightWeighting = ambientLight + pointLightingColor * directionalLightWeighting + specularLightWeighting * pointLightingSpecularColor;\n    //highp vec3 lightWeighting = ambientLight + specularLightWeighting * pointLightingSpecularColor;\n\n    highp vec3 lightWeighting = ambientLight + pointLightingColor * directionalLightWeighting;\n    //gl_FragColor = vec4(vColor * lightWeighting, 1.0);\n    gl_FragColor = vec4((vColor * lightWeighting+specularLightWeighting * pointLightingSpecularColor), 1.0);\n    //gl_FragColor = vec4(1.0,1.0,1.0,1.0);\n\n\n\n\n}\n\n'};
 
+var _elm_lang$keyboard$Keyboard$onSelfMsg = F3(
+	function (router, _p0, state) {
+		var _p1 = _p0;
+		var _p2 = A2(_elm_lang$core$Dict$get, _p1.category, state);
+		if (_p2.ctor === 'Nothing') {
+			return _elm_lang$core$Task$succeed(state);
+		} else {
+			var send = function (tagger) {
+				return A2(
+					_elm_lang$core$Platform$sendToApp,
+					router,
+					tagger(_p1.keyCode));
+			};
+			return A2(
+				_elm_lang$core$Task$andThen,
+				function (_p3) {
+					return _elm_lang$core$Task$succeed(state);
+				},
+				_elm_lang$core$Task$sequence(
+					A2(_elm_lang$core$List$map, send, _p2._0.taggers)));
+		}
+	});
+var _elm_lang$keyboard$Keyboard_ops = _elm_lang$keyboard$Keyboard_ops || {};
+_elm_lang$keyboard$Keyboard_ops['&>'] = F2(
+	function (task1, task2) {
+		return A2(
+			_elm_lang$core$Task$andThen,
+			function (_p4) {
+				return task2;
+			},
+			task1);
+	});
+var _elm_lang$keyboard$Keyboard$init = _elm_lang$core$Task$succeed(_elm_lang$core$Dict$empty);
+var _elm_lang$keyboard$Keyboard$categorizeHelpHelp = F2(
+	function (value, maybeValues) {
+		var _p5 = maybeValues;
+		if (_p5.ctor === 'Nothing') {
+			return _elm_lang$core$Maybe$Just(
+				{
+					ctor: '::',
+					_0: value,
+					_1: {ctor: '[]'}
+				});
+		} else {
+			return _elm_lang$core$Maybe$Just(
+				{ctor: '::', _0: value, _1: _p5._0});
+		}
+	});
+var _elm_lang$keyboard$Keyboard$categorizeHelp = F2(
+	function (subs, subDict) {
+		categorizeHelp:
+		while (true) {
+			var _p6 = subs;
+			if (_p6.ctor === '[]') {
+				return subDict;
+			} else {
+				var _v4 = _p6._1,
+					_v5 = A3(
+					_elm_lang$core$Dict$update,
+					_p6._0._0,
+					_elm_lang$keyboard$Keyboard$categorizeHelpHelp(_p6._0._1),
+					subDict);
+				subs = _v4;
+				subDict = _v5;
+				continue categorizeHelp;
+			}
+		}
+	});
+var _elm_lang$keyboard$Keyboard$categorize = function (subs) {
+	return A2(_elm_lang$keyboard$Keyboard$categorizeHelp, subs, _elm_lang$core$Dict$empty);
+};
+var _elm_lang$keyboard$Keyboard$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
+var _elm_lang$keyboard$Keyboard$subscription = _elm_lang$core$Native_Platform.leaf('Keyboard');
+var _elm_lang$keyboard$Keyboard$Watcher = F2(
+	function (a, b) {
+		return {taggers: a, pid: b};
+	});
+var _elm_lang$keyboard$Keyboard$Msg = F2(
+	function (a, b) {
+		return {category: a, keyCode: b};
+	});
+var _elm_lang$keyboard$Keyboard$onEffects = F3(
+	function (router, newSubs, oldState) {
+		var rightStep = F3(
+			function (category, taggers, task) {
+				return A2(
+					_elm_lang$core$Task$andThen,
+					function (state) {
+						return A2(
+							_elm_lang$core$Task$andThen,
+							function (pid) {
+								return _elm_lang$core$Task$succeed(
+									A3(
+										_elm_lang$core$Dict$insert,
+										category,
+										A2(_elm_lang$keyboard$Keyboard$Watcher, taggers, pid),
+										state));
+							},
+							_elm_lang$core$Process$spawn(
+								A3(
+									_elm_lang$dom$Dom_LowLevel$onDocument,
+									category,
+									_elm_lang$keyboard$Keyboard$keyCode,
+									function (_p7) {
+										return A2(
+											_elm_lang$core$Platform$sendToSelf,
+											router,
+											A2(_elm_lang$keyboard$Keyboard$Msg, category, _p7));
+									})));
+					},
+					task);
+			});
+		var bothStep = F4(
+			function (category, _p8, taggers, task) {
+				var _p9 = _p8;
+				return A2(
+					_elm_lang$core$Task$map,
+					A2(
+						_elm_lang$core$Dict$insert,
+						category,
+						A2(_elm_lang$keyboard$Keyboard$Watcher, taggers, _p9.pid)),
+					task);
+			});
+		var leftStep = F3(
+			function (category, _p10, task) {
+				var _p11 = _p10;
+				return A2(
+					_elm_lang$keyboard$Keyboard_ops['&>'],
+					_elm_lang$core$Process$kill(_p11.pid),
+					task);
+			});
+		return A6(
+			_elm_lang$core$Dict$merge,
+			leftStep,
+			bothStep,
+			rightStep,
+			oldState,
+			_elm_lang$keyboard$Keyboard$categorize(newSubs),
+			_elm_lang$core$Task$succeed(_elm_lang$core$Dict$empty));
+	});
+var _elm_lang$keyboard$Keyboard$MySub = F2(
+	function (a, b) {
+		return {ctor: 'MySub', _0: a, _1: b};
+	});
+var _elm_lang$keyboard$Keyboard$presses = function (tagger) {
+	return _elm_lang$keyboard$Keyboard$subscription(
+		A2(_elm_lang$keyboard$Keyboard$MySub, 'keypress', tagger));
+};
+var _elm_lang$keyboard$Keyboard$downs = function (tagger) {
+	return _elm_lang$keyboard$Keyboard$subscription(
+		A2(_elm_lang$keyboard$Keyboard$MySub, 'keydown', tagger));
+};
+var _elm_lang$keyboard$Keyboard$ups = function (tagger) {
+	return _elm_lang$keyboard$Keyboard$subscription(
+		A2(_elm_lang$keyboard$Keyboard$MySub, 'keyup', tagger));
+};
+var _elm_lang$keyboard$Keyboard$subMap = F2(
+	function (func, _p12) {
+		var _p13 = _p12;
+		return A2(
+			_elm_lang$keyboard$Keyboard$MySub,
+			_p13._0,
+			function (_p14) {
+				return func(
+					_p13._1(_p14));
+			});
+	});
+_elm_lang$core$Native_Platform.effectManagers['Keyboard'] = {pkg: 'elm-lang/keyboard', init: _elm_lang$keyboard$Keyboard$init, onEffects: _elm_lang$keyboard$Keyboard$onEffects, onSelfMsg: _elm_lang$keyboard$Keyboard$onSelfMsg, tag: 'sub', subMap: _elm_lang$keyboard$Keyboard$subMap};
+
+var _elm_lang$elm_architecture_tutorial$MainTypes$Model = F3(
+	function (a, b, c) {
+		return {x: a, y: b, spin: c};
+	});
+var _elm_lang$elm_architecture_tutorial$MainTypes$Spin = {ctor: 'Spin'};
+var _elm_lang$elm_architecture_tutorial$MainTypes$KeyMsg = function (a) {
+	return {ctor: 'KeyMsg', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$MainTypes$AnimMsg = function (a) {
+	return {ctor: 'AnimMsg', _0: a};
+};
+
+var _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader = {'src': '\n\nattribute vec3 position;\nattribute vec3 color;\nattribute vec3 normal;\n\nuniform mat4 rotation;\nuniform mat4 perspective;\nuniform mat4 camera;\nvarying vec3 vColor;\nvarying vec3 vTransformedNormal;\nvarying vec4 vPosition;\n\nvoid main(void) {\n  vColor = color;\n  vPosition = rotation * vec4(position, 1.0);\n  gl_Position = perspective * camera * vPosition;\n  vec4 tempTransformedNormal = rotation * vec4(normal, 1.0);\n  //vTransformedNormal = vec3(1.0,0.0,0.0);//tempTransformedNormal.xyz;\n  vTransformedNormal = tempTransformedNormal.xyz;\n}\n'};
+
+var _elm_lang$elm_architecture_tutorial$Uniforms$uniforms = F2(
+	function (x, y) {
+		return {
+			rotation: A2(
+				_elm_community$linear_algebra$Math_Matrix4$mul,
+				A2(
+					_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+					3 * x,
+					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
+				A2(
+					_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+					2 * y,
+					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0))),
+			perspective: A4(_elm_community$linear_algebra$Math_Matrix4$makePerspective, 45, 1, 1.0e-2, 100),
+			camera: A3(
+				_elm_community$linear_algebra$Math_Matrix4$makeLookAt,
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 5),
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 0),
+				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
+			shade: 1.0
+		};
+	});
+
+var _elm_lang$elm_architecture_tutorial$WebGLScene$scene = F2(
+	function (angleX, angleY) {
+		return {
+			ctor: '::',
+			_0: A4(
+				_elm_community$webgl$WebGL$entity,
+				_elm_lang$elm_architecture_tutorial$VertexShader$vertexShader,
+				_elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader,
+				_elm_lang$elm_architecture_tutorial$Cube$cube,
+				A2(_elm_lang$elm_architecture_tutorial$Uniforms$uniforms, angleX, angleY)),
+			_1: {ctor: '[]'}
+		};
+	});
+
 var _elm_lang$html$Html_Attributes$map = _elm_lang$virtual_dom$VirtualDom$mapProperty;
 var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
 var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
@@ -12356,219 +12576,65 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _elm_lang$keyboard$Keyboard$onSelfMsg = F3(
-	function (router, _p0, state) {
-		var _p1 = _p0;
-		var _p2 = A2(_elm_lang$core$Dict$get, _p1.category, state);
-		if (_p2.ctor === 'Nothing') {
-			return _elm_lang$core$Task$succeed(state);
-		} else {
-			var send = function (tagger) {
-				return A2(
-					_elm_lang$core$Platform$sendToApp,
-					router,
-					tagger(_p1.keyCode));
-			};
-			return A2(
-				_elm_lang$core$Task$andThen,
-				function (_p3) {
-					return _elm_lang$core$Task$succeed(state);
-				},
-				_elm_lang$core$Task$sequence(
-					A2(_elm_lang$core$List$map, send, _p2._0.taggers)));
-		}
-	});
-var _elm_lang$keyboard$Keyboard_ops = _elm_lang$keyboard$Keyboard_ops || {};
-_elm_lang$keyboard$Keyboard_ops['&>'] = F2(
-	function (task1, task2) {
-		return A2(
-			_elm_lang$core$Task$andThen,
-			function (_p4) {
-				return task2;
-			},
-			task1);
-	});
-var _elm_lang$keyboard$Keyboard$init = _elm_lang$core$Task$succeed(_elm_lang$core$Dict$empty);
-var _elm_lang$keyboard$Keyboard$categorizeHelpHelp = F2(
-	function (value, maybeValues) {
-		var _p5 = maybeValues;
-		if (_p5.ctor === 'Nothing') {
-			return _elm_lang$core$Maybe$Just(
+var _elm_lang$elm_architecture_tutorial$MainView$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_community$webgl$WebGL$toHtml,
 				{
 					ctor: '::',
-					_0: value,
-					_1: {ctor: '[]'}
-				});
-		} else {
-			return _elm_lang$core$Maybe$Just(
-				{ctor: '::', _0: value, _1: _p5._0});
-		}
-	});
-var _elm_lang$keyboard$Keyboard$categorizeHelp = F2(
-	function (subs, subDict) {
-		categorizeHelp:
-		while (true) {
-			var _p6 = subs;
-			if (_p6.ctor === '[]') {
-				return subDict;
-			} else {
-				var _v4 = _p6._1,
-					_v5 = A3(
-					_elm_lang$core$Dict$update,
-					_p6._0._0,
-					_elm_lang$keyboard$Keyboard$categorizeHelpHelp(_p6._0._1),
-					subDict);
-				subs = _v4;
-				subDict = _v5;
-				continue categorizeHelp;
-			}
-		}
-	});
-var _elm_lang$keyboard$Keyboard$categorize = function (subs) {
-	return A2(_elm_lang$keyboard$Keyboard$categorizeHelp, subs, _elm_lang$core$Dict$empty);
-};
-var _elm_lang$keyboard$Keyboard$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
-var _elm_lang$keyboard$Keyboard$subscription = _elm_lang$core$Native_Platform.leaf('Keyboard');
-var _elm_lang$keyboard$Keyboard$Watcher = F2(
-	function (a, b) {
-		return {taggers: a, pid: b};
-	});
-var _elm_lang$keyboard$Keyboard$Msg = F2(
-	function (a, b) {
-		return {category: a, keyCode: b};
-	});
-var _elm_lang$keyboard$Keyboard$onEffects = F3(
-	function (router, newSubs, oldState) {
-		var rightStep = F3(
-			function (category, taggers, task) {
-				return A2(
-					_elm_lang$core$Task$andThen,
-					function (state) {
-						return A2(
-							_elm_lang$core$Task$andThen,
-							function (pid) {
-								return _elm_lang$core$Task$succeed(
-									A3(
-										_elm_lang$core$Dict$insert,
-										category,
-										A2(_elm_lang$keyboard$Keyboard$Watcher, taggers, pid),
-										state));
-							},
-							_elm_lang$core$Process$spawn(
-								A3(
-									_elm_lang$dom$Dom_LowLevel$onDocument,
-									category,
-									_elm_lang$keyboard$Keyboard$keyCode,
-									function (_p7) {
-										return A2(
-											_elm_lang$core$Platform$sendToSelf,
-											router,
-											A2(_elm_lang$keyboard$Keyboard$Msg, category, _p7));
-									})));
+					_0: _elm_lang$html$Html_Attributes$width(400),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$height(400),
+						_1: {ctor: '[]'}
+					}
+				},
+				A2(_elm_lang$elm_architecture_tutorial$WebGLScene$scene, model.x, model.y)),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$input,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(_elm_lang$elm_architecture_tutorial$MainTypes$Spin),
+							_1: {ctor: '[]'}
+						}
 					},
-					task);
-			});
-		var bothStep = F4(
-			function (category, _p8, taggers, task) {
-				var _p9 = _p8;
-				return A2(
-					_elm_lang$core$Task$map,
-					A2(
-						_elm_lang$core$Dict$insert,
-						category,
-						A2(_elm_lang$keyboard$Keyboard$Watcher, taggers, _p9.pid)),
-					task);
-			});
-		var leftStep = F3(
-			function (category, _p10, task) {
-				var _p11 = _p10;
-				return A2(
-					_elm_lang$keyboard$Keyboard_ops['&>'],
-					_elm_lang$core$Process$kill(_p11.pid),
-					task);
-			});
-		return A6(
-			_elm_lang$core$Dict$merge,
-			leftStep,
-			bothStep,
-			rightStep,
-			oldState,
-			_elm_lang$keyboard$Keyboard$categorize(newSubs),
-			_elm_lang$core$Task$succeed(_elm_lang$core$Dict$empty));
-	});
-var _elm_lang$keyboard$Keyboard$MySub = F2(
-	function (a, b) {
-		return {ctor: 'MySub', _0: a, _1: b};
-	});
-var _elm_lang$keyboard$Keyboard$presses = function (tagger) {
-	return _elm_lang$keyboard$Keyboard$subscription(
-		A2(_elm_lang$keyboard$Keyboard$MySub, 'keypress', tagger));
+					{ctor: '[]'}),
+				_1: {ctor: '[]'}
+			}
+		});
 };
-var _elm_lang$keyboard$Keyboard$downs = function (tagger) {
-	return _elm_lang$keyboard$Keyboard$subscription(
-		A2(_elm_lang$keyboard$Keyboard$MySub, 'keydown', tagger));
-};
-var _elm_lang$keyboard$Keyboard$ups = function (tagger) {
-	return _elm_lang$keyboard$Keyboard$subscription(
-		A2(_elm_lang$keyboard$Keyboard$MySub, 'keyup', tagger));
-};
-var _elm_lang$keyboard$Keyboard$subMap = F2(
-	function (func, _p12) {
-		var _p13 = _p12;
-		return A2(
-			_elm_lang$keyboard$Keyboard$MySub,
-			_p13._0,
-			function (_p14) {
-				return func(
-					_p13._1(_p14));
-			});
+
+var _elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg = F2(
+	function (model, dt) {
+		var _p0 = model.spin;
+		if (_p0 === true) {
+			return {
+				ctor: '_Tuple2',
+				_0: {x: model.x + (dt / 5000), y: model.y + (dt / 10000), spin: model.spin},
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		} else {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
 	});
-_elm_lang$core$Native_Platform.effectManagers['Keyboard'] = {pkg: 'elm-lang/keyboard', init: _elm_lang$keyboard$Keyboard$init, onEffects: _elm_lang$keyboard$Keyboard$onEffects, onSelfMsg: _elm_lang$keyboard$Keyboard$onSelfMsg, tag: 'sub', subMap: _elm_lang$keyboard$Keyboard$subMap};
-
-var _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader = {'src': '\n\nattribute vec3 position;\nattribute vec3 color;\nattribute vec3 normal;\n\nuniform mat4 rotation;\nuniform mat4 perspective;\nuniform mat4 camera;\nvarying vec3 vColor;\nvarying vec3 vTransformedNormal;\nvarying vec4 vPosition;\n\nvoid main(void) {\n  vColor = color;\n  vPosition = rotation * vec4(position, 1.0);\n  gl_Position = perspective * camera * vPosition;\n  vec4 tempTransformedNormal = rotation * vec4(normal, 1.0);\n  //vTransformedNormal = vec3(1.0,0.0,0.0);//tempTransformedNormal.xyz;\n  vTransformedNormal = tempTransformedNormal.xyz;\n}\n'};
-
-var _elm_lang$elm_architecture_tutorial$Uniforms$uniforms = F2(
-	function (x, y) {
-		return {
-			rotation: A2(
-				_elm_community$linear_algebra$Math_Matrix4$mul,
-				A2(
-					_elm_community$linear_algebra$Math_Matrix4$makeRotate,
-					3 * x,
-					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
-				A2(
-					_elm_community$linear_algebra$Math_Matrix4$makeRotate,
-					2 * y,
-					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0))),
-			perspective: A4(_elm_community$linear_algebra$Math_Matrix4$makePerspective, 45, 1, 1.0e-2, 100),
-			camera: A3(
-				_elm_community$linear_algebra$Math_Matrix4$makeLookAt,
-				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 5),
-				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 0),
-				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
-			shade: 1.0
-		};
-	});
-
-var _elm_lang$elm_architecture_tutorial$Main$update = F2(
+var _elm_lang$elm_architecture_tutorial$MainState$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
 			case 'AnimMsg':
-				var _p2 = _p0._0;
-				var _p1 = model.spin;
-				if (_p1 === true) {
-					return {
-						ctor: '_Tuple2',
-						_0: {x: model.x + (_p2 / 5000), y: model.y + (_p2 / 10000), spin: model.spin},
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				} else {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}
+				return A2(_elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg, model, _p1._0);
 			case 'KeyMsg':
-				var _p3 = _p0._0;
-				switch (_p3) {
+				var _p2 = _p1._0;
+				switch (_p2) {
 					case 37:
 						return {
 							ctor: '_Tuple2',
@@ -12604,124 +12670,26 @@ var _elm_lang$elm_architecture_tutorial$Main$update = F2(
 				};
 		}
 	});
-var _elm_lang$elm_architecture_tutorial$Main$scene = F2(
-	function (angleX, angleY) {
-		return {
-			ctor: '::',
-			_0: A4(
-				_elm_community$webgl$WebGL$entity,
-				_elm_lang$elm_architecture_tutorial$VertexShader$vertexShader,
-				_elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader,
-				_elm_lang$elm_architecture_tutorial$Cube$cube,
-				A2(_elm_lang$elm_architecture_tutorial$Uniforms$uniforms, angleX, angleY)),
-			_1: {ctor: '[]'}
-		};
-	});
-var _elm_lang$elm_architecture_tutorial$Main$twoViews = function (renderable) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_community$webgl$WebGL$toHtml,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$width(400),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$height(400),
-						_1: {ctor: '[]'}
-					}
-				},
-				renderable),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_community$webgl$WebGL$toHtml,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$width(400),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$height(400),
-							_1: {ctor: '[]'}
-						}
-					},
-					renderable),
-				_1: {ctor: '[]'}
-			}
-		});
-};
-var _elm_lang$elm_architecture_tutorial$Main$Model = F3(
-	function (a, b, c) {
-		return {x: a, y: b, spin: c};
-	});
-var _elm_lang$elm_architecture_tutorial$Main$Spin = {ctor: 'Spin'};
-var _elm_lang$elm_architecture_tutorial$Main$KeyMsg = function (a) {
-	return {ctor: 'KeyMsg', _0: a};
-};
-var _elm_lang$elm_architecture_tutorial$Main$AnimMsg = function (a) {
-	return {ctor: 'AnimMsg', _0: a};
-};
-var _elm_lang$elm_architecture_tutorial$Main$subscriptions = function (model) {
+var _elm_lang$elm_architecture_tutorial$MainState$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$batch(
 		{
 			ctor: '::',
-			_0: _elm_lang$animation_frame$AnimationFrame$diffs(_elm_lang$elm_architecture_tutorial$Main$AnimMsg),
+			_0: _elm_lang$animation_frame$AnimationFrame$diffs(_elm_lang$elm_architecture_tutorial$MainTypes$AnimMsg),
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$keyboard$Keyboard$downs(_elm_lang$elm_architecture_tutorial$Main$KeyMsg),
+				_0: _elm_lang$keyboard$Keyboard$downs(_elm_lang$elm_architecture_tutorial$MainTypes$KeyMsg),
 				_1: {ctor: '[]'}
 			}
 		});
 };
+var _elm_lang$elm_architecture_tutorial$MainState$init = {
+	ctor: '_Tuple2',
+	_0: {x: 0, y: 0, spin: false},
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+
 var _elm_lang$elm_architecture_tutorial$Main$main = _elm_lang$html$Html$program(
-	{
-		init: {
-			ctor: '_Tuple2',
-			_0: {x: 0, y: 0, spin: false},
-			_1: _elm_lang$core$Platform_Cmd$none
-		},
-		view: function (model) {
-			return A2(
-				_elm_lang$html$Html$div,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_community$webgl$WebGL$toHtml,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$width(400),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$height(400),
-								_1: {ctor: '[]'}
-							}
-						},
-						A2(_elm_lang$elm_architecture_tutorial$Main$scene, model.x, model.y)),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$input,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onClick(_elm_lang$elm_architecture_tutorial$Main$Spin),
-									_1: {ctor: '[]'}
-								}
-							},
-							{ctor: '[]'}),
-						_1: {ctor: '[]'}
-					}
-				});
-		},
-		subscriptions: _elm_lang$elm_architecture_tutorial$Main$subscriptions,
-		update: _elm_lang$elm_architecture_tutorial$Main$update
-	})();
+	{init: _elm_lang$elm_architecture_tutorial$MainState$init, view: _elm_lang$elm_architecture_tutorial$MainView$view, subscriptions: _elm_lang$elm_architecture_tutorial$MainState$subscriptions, update: _elm_lang$elm_architecture_tutorial$MainState$update})();
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
