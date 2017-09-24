@@ -1,13 +1,11 @@
 var _elm_lang$elm_architecture_tutorial$CubeFace$face = F6(
 	function (rawColor, a, b, c, d, normal) {
-		var color = function () {
-			var c = _elm_lang$core$Color$toRgb(rawColor);
-			return A3(
-				_elm_community$linear_algebra$Math_Vector3$vec3,
-				_elm_lang$core$Basics$toFloat(c.red) / 255,
-				_elm_lang$core$Basics$toFloat(c.green) / 255,
-				_elm_lang$core$Basics$toFloat(c.blue) / 255);
-		}();
+		var rgb = _elm_lang$core$Color$toRgb(rawColor);
+		var color = A3(
+			_elm_community$linear_algebra$Math_Vector3$vec3,
+			_elm_lang$core$Basics$toFloat(rgb.red) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.green) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.blue) / 255);
 		var vertex = function (position) {
 			return A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, position, normal);
 		};

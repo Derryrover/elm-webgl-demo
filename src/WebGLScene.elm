@@ -8,4 +8,6 @@ import Cube exposing (cube)
 
 scene : Float -> Float -> List Entity
 scene angleX angleY =
-    [ entity vertexShader fragmentShader cube (uniforms angleX angleY) ]
+    let matrixCollection = uniforms angleX angleY
+    in
+    [ entity vertexShader fragmentShader cube matrixCollection ]

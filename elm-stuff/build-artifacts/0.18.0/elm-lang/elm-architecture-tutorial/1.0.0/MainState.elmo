@@ -1,56 +1,60 @@
+var _elm_lang$elm_architecture_tutorial$MainState$updateKeyMsg = F2(
+	function (model, code) {
+		var _p0 = code;
+		switch (_p0) {
+			case 37:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{x: model.x - 1.0e-2});
+			case 39:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{x: model.x + 1.0e-2});
+			case 38:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{y: model.y - 1.0e-2});
+			case 40:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{y: model.y + 1.0e-2});
+			default:
+				return model;
+		}
+	});
 var _elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg = F2(
 	function (model, dt) {
-		var _p0 = model.spin;
-		if (_p0 === true) {
-			return {
-				ctor: '_Tuple2',
-				_0: {x: model.x + (dt / 5000), y: model.y + (dt / 10000), spin: model.spin},
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
+		var _p1 = model.spin;
+		if (_p1 === true) {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{x: model.x + (dt / 5000), y: model.y + (dt / 10000)});
 		} else {
-			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			return model;
 		}
 	});
 var _elm_lang$elm_architecture_tutorial$MainState$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
-		switch (_p1.ctor) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
 			case 'AnimMsg':
-				return A2(_elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg, model, _p1._0);
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg, model, _p2._0),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'KeyMsg':
-				var _p2 = _p1._0;
-				switch (_p2) {
-					case 37:
-						return {
-							ctor: '_Tuple2',
-							_0: {x: model.x - 1.0e-2, y: model.y, spin: model.spin},
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					case 39:
-						return {
-							ctor: '_Tuple2',
-							_0: {x: model.x + 1.0e-2, y: model.y, spin: model.spin},
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					case 38:
-						return {
-							ctor: '_Tuple2',
-							_0: {x: model.x, y: model.y - 1.0e-2, spin: model.spin},
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					case 40:
-						return {
-							ctor: '_Tuple2',
-							_0: {x: model.x, y: model.y + 1.0e-2, spin: model.spin},
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					default:
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$elm_architecture_tutorial$MainState$updateKeyMsg, model, _p2._0),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
 				return {
 					ctor: '_Tuple2',
-					_0: {x: model.x, y: model.y, spin: !model.spin},
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{spin: !model.spin}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}

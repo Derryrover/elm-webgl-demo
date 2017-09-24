@@ -11775,14 +11775,12 @@ var _elm_lang$elm_architecture_tutorial$Vertex$Vertex = F3(
 
 var _elm_lang$elm_architecture_tutorial$CubeFace$face = F6(
 	function (rawColor, a, b, c, d, normal) {
-		var color = function () {
-			var c = _elm_lang$core$Color$toRgb(rawColor);
-			return A3(
-				_elm_community$linear_algebra$Math_Vector3$vec3,
-				_elm_lang$core$Basics$toFloat(c.red) / 255,
-				_elm_lang$core$Basics$toFloat(c.green) / 255,
-				_elm_lang$core$Basics$toFloat(c.blue) / 255);
-		}();
+		var rgb = _elm_lang$core$Color$toRgb(rawColor);
+		var color = A3(
+			_elm_community$linear_algebra$Math_Vector3$vec3,
+			_elm_lang$core$Basics$toFloat(rgb.red) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.green) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.blue) / 255);
 		var vertex = function (position) {
 			return A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, position, normal);
 		};
@@ -11808,85 +11806,83 @@ var _elm_lang$elm_architecture_tutorial$CubeFace$face = F6(
 	});
 
 var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
-	var lbb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, -1);
-	var lfb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, -1);
-	var rfb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, -1);
-	var rbb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, -1);
-	var rbt = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1);
-	var lbt = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1);
-	var lft = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1);
-	var rft = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1);
-	return function (_p0) {
-		return _elm_community$webgl$WebGL$triangles(
-			_elm_lang$core$List$concat(_p0));
-	}(
-		{
-			ctor: '::',
-			_0: A6(
-				_elm_lang$elm_architecture_tutorial$CubeFace$face,
-				_elm_lang$core$Color$green,
-				rft,
-				rfb,
-				rbb,
-				rbt,
-				A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0)),
-			_1: {
+	var ldb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, -1);
+	var rdb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, -1);
+	var rtb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, -1);
+	var ltb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, -1);
+	var ldf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1);
+	var rdf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1);
+	var rtf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1);
+	var ltf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1);
+	return _elm_community$webgl$WebGL$triangles(
+		_elm_lang$core$List$concat(
+			{
 				ctor: '::',
 				_0: A6(
 					_elm_lang$elm_architecture_tutorial$CubeFace$face,
-					_elm_lang$core$Color$blue,
-					rft,
-					rfb,
-					lfb,
-					lft,
-					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
+					_elm_lang$core$Color$purple,
+					ltb,
+					ltf,
+					ldf,
+					ldb,
+					A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, 0)),
 				_1: {
 					ctor: '::',
 					_0: A6(
 						_elm_lang$elm_architecture_tutorial$CubeFace$face,
-						_elm_lang$core$Color$yellow,
-						rft,
-						lft,
-						lbt,
-						rbt,
-						A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 1)),
+						_elm_lang$core$Color$green,
+						rtb,
+						rtf,
+						rdf,
+						rdb,
+						A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0)),
 					_1: {
 						ctor: '::',
 						_0: A6(
 							_elm_lang$elm_architecture_tutorial$CubeFace$face,
-							_elm_lang$core$Color$red,
-							rfb,
-							lfb,
-							lbb,
-							rbb,
-							A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, -1)),
+							_elm_lang$core$Color$blue,
+							ltf,
+							rtf,
+							rtb,
+							ltb,
+							A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
 						_1: {
 							ctor: '::',
 							_0: A6(
 								_elm_lang$elm_architecture_tutorial$CubeFace$face,
-								_elm_lang$core$Color$purple,
-								lft,
-								lfb,
-								lbb,
-								lbt,
-								A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, 0)),
+								_elm_lang$core$Color$orange,
+								ldf,
+								rdf,
+								rdb,
+								ldb,
+								A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -1, 0)),
 							_1: {
 								ctor: '::',
 								_0: A6(
 									_elm_lang$elm_architecture_tutorial$CubeFace$face,
-									_elm_lang$core$Color$orange,
-									rbt,
-									rbb,
-									lbb,
-									lbt,
-									A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -1, 0)),
-								_1: {ctor: '[]'}
+									_elm_lang$core$Color$yellow,
+									ltf,
+									rtf,
+									rdf,
+									ldf,
+									A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 1)),
+								_1: {
+									ctor: '::',
+									_0: A6(
+										_elm_lang$elm_architecture_tutorial$CubeFace$face,
+										_elm_lang$core$Color$red,
+										ltb,
+										rtb,
+										rdb,
+										ldb,
+										A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, -1)),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
 					}
 				}
-			}
-		});
+			}));
 }();
 
 var _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader = {'src': '\n\nprecision mediump float;\n\nuniform float shade; // needed?\n\nvarying vec3 vColor;\nvarying vec3 vTransformedNormal;\nvarying vec4 vPosition;\n\nvoid main () {\n\n    vec3 normal = normalize(vTransformedNormal);\n    vec3 eyeDirection = normalize( vPosition.xyz - vec3(0.0,0.0,5.0) );\n\n    vec3 ambientLight = vec3(0.6, 0.6, 0.6);\n    vec3 pointLightingColor = vec3(0.7, 0.7, 0.7);\n    vec3 pointLightingSpecularColor = vec3(0.3, 0.3, 0.3);\n    float materialShininess = 2.0;\n\n\n    vec3 lightDirection = vec3(0.0, 0.0, 5.0);\n    //vec3 relativeLightDirection = normalize( vPosition.xyz - lightDirection );\n    vec3 relativeLightDirection = normalize( vPosition.xyz - lightDirection);\n\n    //vec3 reflectionDirection = reflect(relativeLightDirection, normal); // original\n    vec3 reflectionDirection = reflect(-relativeLightDirection, normal); // original\n    //vec3 reflectionDirection = reflect(lightDirection, normal);\n\n    float specularLightWeighting = pow(max(dot(reflectionDirection, eyeDirection), 0.0), materialShininess);\n\n\n    float directionalLightWeighting = max(dot(normal, -relativeLightDirection), 0.0);\n    //float directionalLightWeighting = max(dot(normal, relativeLightDirection), 0.0);\n    //highp vec3 lightWeighting = ambientLight + pointLightingColor * directionalLightWeighting + specularLightWeighting * pointLightingSpecularColor;\n    //highp vec3 lightWeighting = ambientLight + specularLightWeighting * pointLightingSpecularColor;\n\n    highp vec3 lightWeighting = ambientLight + pointLightingColor * directionalLightWeighting;\n    //gl_FragColor = vec4(vColor * lightWeighting, 1.0);\n    gl_FragColor = vec4((vColor * lightWeighting+specularLightWeighting * pointLightingSpecularColor), 1.0);\n    //gl_FragColor = vec4(1.0,1.0,1.0,1.0);\n\n\n\n\n}\n\n'};
@@ -12085,7 +12081,7 @@ var _elm_lang$elm_architecture_tutorial$Uniforms$uniforms = F2(
 					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
 				A2(
 					_elm_community$linear_algebra$Math_Matrix4$makeRotate,
-					2 * y,
+					3 * y,
 					A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0))),
 			perspective: A4(_elm_community$linear_algebra$Math_Matrix4$makePerspective, 45, 1, 1.0e-2, 100),
 			camera: A3(
@@ -12099,14 +12095,10 @@ var _elm_lang$elm_architecture_tutorial$Uniforms$uniforms = F2(
 
 var _elm_lang$elm_architecture_tutorial$WebGLScene$scene = F2(
 	function (angleX, angleY) {
+		var matrixCollection = A2(_elm_lang$elm_architecture_tutorial$Uniforms$uniforms, angleX, angleY);
 		return {
 			ctor: '::',
-			_0: A4(
-				_elm_community$webgl$WebGL$entity,
-				_elm_lang$elm_architecture_tutorial$VertexShader$vertexShader,
-				_elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader,
-				_elm_lang$elm_architecture_tutorial$Cube$cube,
-				A2(_elm_lang$elm_architecture_tutorial$Uniforms$uniforms, angleX, angleY)),
+			_0: A4(_elm_community$webgl$WebGL$entity, _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader, _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader, _elm_lang$elm_architecture_tutorial$Cube$cube, matrixCollection),
 			_1: {ctor: '[]'}
 		};
 	});
@@ -12613,59 +12605,63 @@ var _elm_lang$elm_architecture_tutorial$MainView$view = function (model) {
 		});
 };
 
+var _elm_lang$elm_architecture_tutorial$MainState$updateKeyMsg = F2(
+	function (model, code) {
+		var _p0 = code;
+		switch (_p0) {
+			case 37:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{x: model.x - 1.0e-2});
+			case 39:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{x: model.x + 1.0e-2});
+			case 38:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{y: model.y - 1.0e-2});
+			case 40:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{y: model.y + 1.0e-2});
+			default:
+				return model;
+		}
+	});
 var _elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg = F2(
 	function (model, dt) {
-		var _p0 = model.spin;
-		if (_p0 === true) {
-			return {
-				ctor: '_Tuple2',
-				_0: {x: model.x + (dt / 5000), y: model.y + (dt / 10000), spin: model.spin},
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
+		var _p1 = model.spin;
+		if (_p1 === true) {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{x: model.x + (dt / 5000), y: model.y + (dt / 10000)});
 		} else {
-			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			return model;
 		}
 	});
 var _elm_lang$elm_architecture_tutorial$MainState$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
-		switch (_p1.ctor) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
 			case 'AnimMsg':
-				return A2(_elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg, model, _p1._0);
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$elm_architecture_tutorial$MainState$updateAnimMsg, model, _p2._0),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'KeyMsg':
-				var _p2 = _p1._0;
-				switch (_p2) {
-					case 37:
-						return {
-							ctor: '_Tuple2',
-							_0: {x: model.x - 1.0e-2, y: model.y, spin: model.spin},
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					case 39:
-						return {
-							ctor: '_Tuple2',
-							_0: {x: model.x + 1.0e-2, y: model.y, spin: model.spin},
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					case 38:
-						return {
-							ctor: '_Tuple2',
-							_0: {x: model.x, y: model.y - 1.0e-2, spin: model.spin},
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					case 40:
-						return {
-							ctor: '_Tuple2',
-							_0: {x: model.x, y: model.y + 1.0e-2, spin: model.spin},
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					default:
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$elm_architecture_tutorial$MainState$updateKeyMsg, model, _p2._0),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
 				return {
 					ctor: '_Tuple2',
-					_0: {x: model.x, y: model.y, spin: !model.spin},
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{spin: !model.spin}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}
