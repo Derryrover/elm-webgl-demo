@@ -12093,12 +12093,175 @@ var _elm_lang$elm_architecture_tutorial$Uniforms$uniforms = F2(
 		};
 	});
 
+var _elm_lang$elm_architecture_tutorial$TriangleFace$face = F5(
+	function (rawColor, normal, a, b, c) {
+		var rgb = _elm_lang$core$Color$toRgb(rawColor);
+		var color = A3(
+			_elm_community$linear_algebra$Math_Vector3$vec3,
+			_elm_lang$core$Basics$toFloat(rgb.red) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.green) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.blue) / 255);
+		var vertexA = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, a, normal);
+		var vertexB = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, b, normal);
+		var vertexC = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, c, normal);
+		return {ctor: '_Tuple3', _0: vertexA, _1: vertexB, _2: vertexC};
+	});
+
+var _elm_lang$elm_architecture_tutorial$Octaeder$back = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, -1);
+var _elm_lang$elm_architecture_tutorial$Octaeder$front = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 1);
+var _elm_lang$elm_architecture_tutorial$Octaeder$right = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0);
+var _elm_lang$elm_architecture_tutorial$Octaeder$left = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, 0);
+var _elm_lang$elm_architecture_tutorial$Octaeder$down = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -1, 0);
+var _elm_lang$elm_architecture_tutorial$Octaeder$ldf = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$purple,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1),
+	_elm_lang$elm_architecture_tutorial$Octaeder$left,
+	_elm_lang$elm_architecture_tutorial$Octaeder$down,
+	_elm_lang$elm_architecture_tutorial$Octaeder$front);
+var _elm_lang$elm_architecture_tutorial$Octaeder$rdf = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$orange,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1),
+	_elm_lang$elm_architecture_tutorial$Octaeder$right,
+	_elm_lang$elm_architecture_tutorial$Octaeder$down,
+	_elm_lang$elm_architecture_tutorial$Octaeder$front);
+var _elm_lang$elm_architecture_tutorial$Octaeder$rdb = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$white,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1),
+	_elm_lang$elm_architecture_tutorial$Octaeder$right,
+	_elm_lang$elm_architecture_tutorial$Octaeder$down,
+	_elm_lang$elm_architecture_tutorial$Octaeder$back);
+var _elm_lang$elm_architecture_tutorial$Octaeder$ldb = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$darkBlue,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1),
+	_elm_lang$elm_architecture_tutorial$Octaeder$left,
+	_elm_lang$elm_architecture_tutorial$Octaeder$down,
+	_elm_lang$elm_architecture_tutorial$Octaeder$back);
+var _elm_lang$elm_architecture_tutorial$Octaeder$top = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0);
+var _elm_lang$elm_architecture_tutorial$Octaeder$ltf = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$red,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Octaeder$left,
+	_elm_lang$elm_architecture_tutorial$Octaeder$top,
+	_elm_lang$elm_architecture_tutorial$Octaeder$front);
+var _elm_lang$elm_architecture_tutorial$Octaeder$rtf = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$blue,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Octaeder$right,
+	_elm_lang$elm_architecture_tutorial$Octaeder$top,
+	_elm_lang$elm_architecture_tutorial$Octaeder$front);
+var _elm_lang$elm_architecture_tutorial$Octaeder$rtb = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$yellow,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, -1),
+	_elm_lang$elm_architecture_tutorial$Octaeder$right,
+	_elm_lang$elm_architecture_tutorial$Octaeder$top,
+	_elm_lang$elm_architecture_tutorial$Octaeder$back);
+var _elm_lang$elm_architecture_tutorial$Octaeder$ltb = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$green,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, -1),
+	_elm_lang$elm_architecture_tutorial$Octaeder$left,
+	_elm_lang$elm_architecture_tutorial$Octaeder$top,
+	_elm_lang$elm_architecture_tutorial$Octaeder$back);
+var _elm_lang$elm_architecture_tutorial$Octaeder$octaeder = _elm_community$webgl$WebGL$triangles(
+	{
+		ctor: '::',
+		_0: _elm_lang$elm_architecture_tutorial$Octaeder$ltf,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$Octaeder$rtf,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$Octaeder$rtb,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$elm_architecture_tutorial$Octaeder$ltb,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$elm_architecture_tutorial$Octaeder$ldf,
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$elm_architecture_tutorial$Octaeder$rdf,
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$elm_architecture_tutorial$Octaeder$rdb,
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$elm_architecture_tutorial$Octaeder$ldb,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+
+var _elm_lang$elm_architecture_tutorial$Tetraeder$back = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, -1);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$right = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, -1);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$left = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$brl = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$red,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, -1),
+	_elm_lang$elm_architecture_tutorial$Tetraeder$back,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$left,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$right);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$top = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$tlr = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$green,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Tetraeder$top,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$left,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$right);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$tlb = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$blue,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1),
+	_elm_lang$elm_architecture_tutorial$Tetraeder$top,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$left,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$back);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$trb = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$yellow,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, -1),
+	_elm_lang$elm_architecture_tutorial$Tetraeder$top,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$right,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$back);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$tetraeder = _elm_community$webgl$WebGL$triangles(
+	{
+		ctor: '::',
+		_0: _elm_lang$elm_architecture_tutorial$Tetraeder$tlr,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$Tetraeder$tlb,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$Tetraeder$trb,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$elm_architecture_tutorial$Tetraeder$brl,
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
+var _elm_lang$elm_architecture_tutorial$Tetraeder$a = 1;
+
 var _elm_lang$elm_architecture_tutorial$WebGLScene$scene = F2(
 	function (angleX, angleY) {
 		var matrixCollection = A2(_elm_lang$elm_architecture_tutorial$Uniforms$uniforms, angleX, angleY);
 		return {
 			ctor: '::',
-			_0: A4(_elm_community$webgl$WebGL$entity, _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader, _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader, _elm_lang$elm_architecture_tutorial$Cube$cube, matrixCollection),
+			_0: A4(_elm_community$webgl$WebGL$entity, _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader, _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader, _elm_lang$elm_architecture_tutorial$Tetraeder$tetraeder, matrixCollection),
 			_1: {ctor: '[]'}
 		};
 	});

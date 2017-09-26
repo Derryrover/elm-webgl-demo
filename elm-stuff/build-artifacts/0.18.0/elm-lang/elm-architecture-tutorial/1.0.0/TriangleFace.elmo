@@ -1,0 +1,13 @@
+var _elm_lang$elm_architecture_tutorial$TriangleFace$face = F5(
+	function (rawColor, normal, a, b, c) {
+		var rgb = _elm_lang$core$Color$toRgb(rawColor);
+		var color = A3(
+			_elm_community$linear_algebra$Math_Vector3$vec3,
+			_elm_lang$core$Basics$toFloat(rgb.red) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.green) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.blue) / 255);
+		var vertexA = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, a, normal);
+		var vertexB = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, b, normal);
+		var vertexC = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, c, normal);
+		return {ctor: '_Tuple3', _0: vertexA, _1: vertexB, _2: vertexC};
+	});

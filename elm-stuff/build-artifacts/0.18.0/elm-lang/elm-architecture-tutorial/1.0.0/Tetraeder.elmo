@@ -1,0 +1,51 @@
+var _elm_lang$elm_architecture_tutorial$Tetraeder$back = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, -1);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$right = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, -1);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$left = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$brl = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$red,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, -1),
+	_elm_lang$elm_architecture_tutorial$Tetraeder$back,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$left,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$right);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$top = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$tlr = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$green,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Tetraeder$top,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$left,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$right);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$tlb = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$blue,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1),
+	_elm_lang$elm_architecture_tutorial$Tetraeder$top,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$left,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$back);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$trb = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$yellow,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, -1),
+	_elm_lang$elm_architecture_tutorial$Tetraeder$top,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$right,
+	_elm_lang$elm_architecture_tutorial$Tetraeder$back);
+var _elm_lang$elm_architecture_tutorial$Tetraeder$tetraeder = _elm_community$webgl$WebGL$triangles(
+	{
+		ctor: '::',
+		_0: _elm_lang$elm_architecture_tutorial$Tetraeder$tlr,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$Tetraeder$tlb,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$Tetraeder$trb,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$elm_architecture_tutorial$Tetraeder$brl,
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
+var _elm_lang$elm_architecture_tutorial$Tetraeder$a = 1;

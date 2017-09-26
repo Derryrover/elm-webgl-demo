@@ -3,7 +3,7 @@ var _elm_lang$elm_architecture_tutorial$WebGLScene$scene = F2(
 		var matrixCollection = A2(_elm_lang$elm_architecture_tutorial$Uniforms$uniforms, angleX, angleY);
 		return {
 			ctor: '::',
-			_0: A4(_elm_community$webgl$WebGL$entity, _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader, _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader, _elm_lang$elm_architecture_tutorial$Cube$cube, matrixCollection),
+			_0: A4(_elm_community$webgl$WebGL$entity, _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader, _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader, _elm_lang$elm_architecture_tutorial$Tetraeder$tetraeder, matrixCollection),
 			_1: {ctor: '[]'}
 		};
 	});
