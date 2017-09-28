@@ -7,6 +7,8 @@ import Uniforms exposing (uniforms)
 import Cube exposing (cube)
 import Octaeder exposing (octaeder)
 import Tetraeder exposing(tetraeder)
+import Balk exposing (balk)
+import Icosahedron exposing(icosahedron)
 
 scene : Float -> Float -> List Entity
 scene angleX angleY =
@@ -14,4 +16,6 @@ scene angleX angleY =
     in
     --[ entity vertexShader fragmentShader cube matrixCollection ]
     --[ entity vertexShader fragmentShader octaeder matrixCollection ]
-    [ entity vertexShader fragmentShader tetraeder matrixCollection ]
+    --[ entity vertexShader fragmentShader tetraeder matrixCollection ]
+    --[ entity vertexShader fragmentShader balk matrixCollection ]
+    [ entity vertexShader fragmentShader icosahedron matrixCollection ]

@@ -1,0 +1,146 @@
+var _elm_lang$elm_architecture_tutorial$Icosahedron$z4 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -2, 1, 0);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$z3 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -2, -1, 0);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$z2 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 2, -1, 0);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$z1 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 2, 1, 0);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$y4 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, -2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ2 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$purple,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$y3 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, -2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ4 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$purple,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$y2 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, 2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ3 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$yellow,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$y1 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ1 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$yellow,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$x4 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -2, 1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY2 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$orange,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$x3 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -2, -1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX3 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$blue,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX4 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$red,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY4 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$orange,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$x2 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 2, -1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY3 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$green,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$x1 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 2, 1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX1 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$blue,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX2 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$red,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY1 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$green,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$icosahedron = _elm_community$webgl$WebGL$triangles(
+	{
+		ctor: '::',
+		_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX1,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX2,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX3,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX4,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY1,
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY2,
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY3,
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY4,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ1,
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ2,
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ3,
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ4,
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});

@@ -1,4 +1,4 @@
-module CubeFace exposing (face)
+module SquareFace exposing (face)
 
 import Math.Vector3 exposing (Vec3, vec3)
 import Vertex exposing (Vertex)

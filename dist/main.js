@@ -11773,7 +11773,7 @@ var _elm_lang$elm_architecture_tutorial$Vertex$Vertex = F3(
 		return {color: a, position: b, normal: c};
 	});
 
-var _elm_lang$elm_architecture_tutorial$CubeFace$face = F6(
+var _elm_lang$elm_architecture_tutorial$SquareFace$face = F6(
 	function (rawColor, a, b, c, d, normal) {
 		var rgb = _elm_lang$core$Color$toRgb(rawColor);
 		var color = A3(
@@ -11805,6 +11805,86 @@ var _elm_lang$elm_architecture_tutorial$CubeFace$face = F6(
 		};
 	});
 
+var _elm_lang$elm_architecture_tutorial$Balk$balk = function () {
+	var ldb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -0.5, -0.5);
+	var rdb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -0.5, -0.5);
+	var rtb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0.5, -0.5);
+	var ltb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0.5, -0.5);
+	var ldf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -0.5, 0.5);
+	var rdf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -0.5, 0.5);
+	var rtf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0.5, 0.5);
+	var ltf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0.5, 0.5);
+	return _elm_community$webgl$WebGL$triangles(
+		_elm_lang$core$List$concat(
+			{
+				ctor: '::',
+				_0: A6(
+					_elm_lang$elm_architecture_tutorial$SquareFace$face,
+					_elm_lang$core$Color$purple,
+					ltb,
+					ltf,
+					ldf,
+					ldb,
+					A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, 0)),
+				_1: {
+					ctor: '::',
+					_0: A6(
+						_elm_lang$elm_architecture_tutorial$SquareFace$face,
+						_elm_lang$core$Color$green,
+						rtb,
+						rtf,
+						rdf,
+						rdb,
+						A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0)),
+					_1: {
+						ctor: '::',
+						_0: A6(
+							_elm_lang$elm_architecture_tutorial$SquareFace$face,
+							_elm_lang$core$Color$blue,
+							ltf,
+							rtf,
+							rtb,
+							ltb,
+							A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
+						_1: {
+							ctor: '::',
+							_0: A6(
+								_elm_lang$elm_architecture_tutorial$SquareFace$face,
+								_elm_lang$core$Color$orange,
+								ldf,
+								rdf,
+								rdb,
+								ldb,
+								A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -1, 0)),
+							_1: {
+								ctor: '::',
+								_0: A6(
+									_elm_lang$elm_architecture_tutorial$SquareFace$face,
+									_elm_lang$core$Color$yellow,
+									ltf,
+									rtf,
+									rdf,
+									ldf,
+									A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 1)),
+								_1: {
+									ctor: '::',
+									_0: A6(
+										_elm_lang$elm_architecture_tutorial$SquareFace$face,
+										_elm_lang$core$Color$red,
+										ltb,
+										rtb,
+										rdb,
+										ldb,
+										A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, -1)),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}));
+}();
+
 var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 	var ldb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, -1);
 	var rdb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, -1);
@@ -11819,7 +11899,7 @@ var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 			{
 				ctor: '::',
 				_0: A6(
-					_elm_lang$elm_architecture_tutorial$CubeFace$face,
+					_elm_lang$elm_architecture_tutorial$SquareFace$face,
 					_elm_lang$core$Color$purple,
 					ltb,
 					ltf,
@@ -11829,7 +11909,7 @@ var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 				_1: {
 					ctor: '::',
 					_0: A6(
-						_elm_lang$elm_architecture_tutorial$CubeFace$face,
+						_elm_lang$elm_architecture_tutorial$SquareFace$face,
 						_elm_lang$core$Color$green,
 						rtb,
 						rtf,
@@ -11839,7 +11919,7 @@ var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 					_1: {
 						ctor: '::',
 						_0: A6(
-							_elm_lang$elm_architecture_tutorial$CubeFace$face,
+							_elm_lang$elm_architecture_tutorial$SquareFace$face,
 							_elm_lang$core$Color$blue,
 							ltf,
 							rtf,
@@ -11849,7 +11929,7 @@ var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 						_1: {
 							ctor: '::',
 							_0: A6(
-								_elm_lang$elm_architecture_tutorial$CubeFace$face,
+								_elm_lang$elm_architecture_tutorial$SquareFace$face,
 								_elm_lang$core$Color$orange,
 								ldf,
 								rdf,
@@ -11859,7 +11939,7 @@ var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 							_1: {
 								ctor: '::',
 								_0: A6(
-									_elm_lang$elm_architecture_tutorial$CubeFace$face,
+									_elm_lang$elm_architecture_tutorial$SquareFace$face,
 									_elm_lang$core$Color$yellow,
 									ltf,
 									rtf,
@@ -11869,7 +11949,7 @@ var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 								_1: {
 									ctor: '::',
 									_0: A6(
-										_elm_lang$elm_architecture_tutorial$CubeFace$face,
+										_elm_lang$elm_architecture_tutorial$SquareFace$face,
 										_elm_lang$core$Color$red,
 										ltb,
 										rtb,
@@ -11886,6 +11966,167 @@ var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
 }();
 
 var _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader = {'src': '\n\nprecision mediump float;\n\nuniform float shade; // needed?\n\nvarying vec3 vColor;\nvarying vec3 vTransformedNormal;\nvarying vec4 vPosition;\n\nvoid main () {\n\n    vec3 normal = normalize(vTransformedNormal);\n    vec3 eyeDirection = normalize( vPosition.xyz - vec3(0.0,0.0,5.0) );\n\n    vec3 ambientLight = vec3(0.6, 0.6, 0.6);\n    vec3 pointLightingColor = vec3(0.7, 0.7, 0.7);\n    vec3 pointLightingSpecularColor = vec3(0.3, 0.3, 0.3);\n    float materialShininess = 2.0;\n\n\n    vec3 lightDirection = vec3(0.0, 0.0, 5.0);\n    //vec3 relativeLightDirection = normalize( vPosition.xyz - lightDirection );\n    vec3 relativeLightDirection = normalize( vPosition.xyz - lightDirection);\n\n    //vec3 reflectionDirection = reflect(relativeLightDirection, normal); // original\n    vec3 reflectionDirection = reflect(-relativeLightDirection, normal); // original\n    //vec3 reflectionDirection = reflect(lightDirection, normal);\n\n    float specularLightWeighting = pow(max(dot(reflectionDirection, eyeDirection), 0.0), materialShininess);\n\n\n    float directionalLightWeighting = max(dot(normal, -relativeLightDirection), 0.0);\n    //float directionalLightWeighting = max(dot(normal, relativeLightDirection), 0.0);\n    //highp vec3 lightWeighting = ambientLight + pointLightingColor * directionalLightWeighting + specularLightWeighting * pointLightingSpecularColor;\n    //highp vec3 lightWeighting = ambientLight + specularLightWeighting * pointLightingSpecularColor;\n\n    highp vec3 lightWeighting = ambientLight + pointLightingColor * directionalLightWeighting;\n    //gl_FragColor = vec4(vColor * lightWeighting, 1.0);\n    gl_FragColor = vec4((vColor * lightWeighting+specularLightWeighting * pointLightingSpecularColor), 1.0);\n    //gl_FragColor = vec4(1.0,1.0,1.0,1.0);\n\n\n\n\n}\n\n'};
+
+var _elm_lang$elm_architecture_tutorial$TriangleFace$face = F5(
+	function (rawColor, normal, a, b, c) {
+		var rgb = _elm_lang$core$Color$toRgb(rawColor);
+		var color = A3(
+			_elm_community$linear_algebra$Math_Vector3$vec3,
+			_elm_lang$core$Basics$toFloat(rgb.red) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.green) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.blue) / 255);
+		var vertexA = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, a, normal);
+		var vertexB = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, b, normal);
+		var vertexC = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, c, normal);
+		return {ctor: '_Tuple3', _0: vertexA, _1: vertexB, _2: vertexC};
+	});
+
+var _elm_lang$elm_architecture_tutorial$Icosahedron$z4 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -2, 1, 0);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$z3 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -2, -1, 0);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$z2 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 2, -1, 0);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$z1 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 2, 1, 0);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$y4 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, -2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ2 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$purple,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$y3 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, -2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ4 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$purple,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$y2 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0, 2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ3 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$yellow,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$y1 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ1 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$yellow,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$x4 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -2, 1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY2 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$orange,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$x3 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, -2, -1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX3 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$blue,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX4 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$red,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY4 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$orange,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$x2 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 2, -1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY3 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$green,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y3,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y4,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$x1 = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 2, 1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX1 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$blue,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX2 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$red,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$z4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY1 = A5(
+	_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+	_elm_lang$core$Color$green,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1),
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y1,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$y2,
+	_elm_lang$elm_architecture_tutorial$Icosahedron$x1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron$icosahedron = _elm_community$webgl$WebGL$triangles(
+	{
+		ctor: '::',
+		_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX1,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX2,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX3,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesX4,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY1,
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY2,
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY3,
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesY4,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ1,
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ2,
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ3,
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$elm_architecture_tutorial$Icosahedron$whitesZ4,
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
 
 var _elm_lang$keyboard$Keyboard$onSelfMsg = F3(
 	function (router, _p0, state) {
@@ -12093,20 +12334,6 @@ var _elm_lang$elm_architecture_tutorial$Uniforms$uniforms = F2(
 		};
 	});
 
-var _elm_lang$elm_architecture_tutorial$TriangleFace$face = F5(
-	function (rawColor, normal, a, b, c) {
-		var rgb = _elm_lang$core$Color$toRgb(rawColor);
-		var color = A3(
-			_elm_community$linear_algebra$Math_Vector3$vec3,
-			_elm_lang$core$Basics$toFloat(rgb.red) / 255,
-			_elm_lang$core$Basics$toFloat(rgb.green) / 255,
-			_elm_lang$core$Basics$toFloat(rgb.blue) / 255);
-		var vertexA = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, a, normal);
-		var vertexB = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, b, normal);
-		var vertexC = A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, c, normal);
-		return {ctor: '_Tuple3', _0: vertexA, _1: vertexB, _2: vertexC};
-	});
-
 var _elm_lang$elm_architecture_tutorial$Octaeder$back = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, -1);
 var _elm_lang$elm_architecture_tutorial$Octaeder$front = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 1);
 var _elm_lang$elm_architecture_tutorial$Octaeder$right = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0);
@@ -12261,7 +12488,7 @@ var _elm_lang$elm_architecture_tutorial$WebGLScene$scene = F2(
 		var matrixCollection = A2(_elm_lang$elm_architecture_tutorial$Uniforms$uniforms, angleX, angleY);
 		return {
 			ctor: '::',
-			_0: A4(_elm_community$webgl$WebGL$entity, _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader, _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader, _elm_lang$elm_architecture_tutorial$Tetraeder$tetraeder, matrixCollection),
+			_0: A4(_elm_community$webgl$WebGL$entity, _elm_lang$elm_architecture_tutorial$VertexShader$vertexShader, _elm_lang$elm_architecture_tutorial$FragmentShader$fragmentShader, _elm_lang$elm_architecture_tutorial$Icosahedron$icosahedron, matrixCollection),
 			_1: {ctor: '[]'}
 		};
 	});

@@ -1,12 +1,12 @@
-var _elm_lang$elm_architecture_tutorial$Cube$cube = function () {
-	var ldb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, -1);
-	var rdb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, -1);
-	var rtb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, -1);
-	var ltb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, -1);
-	var ldf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 1);
-	var rdf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 1);
-	var rtf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1);
-	var ltf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 1);
+var _elm_lang$elm_architecture_tutorial$Balk$balk = function () {
+	var ldb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -0.5, -0.5);
+	var rdb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -0.5, -0.5);
+	var rtb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0.5, -0.5);
+	var ltb = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0.5, -0.5);
+	var ldf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -0.5, 0.5);
+	var rdf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -0.5, 0.5);
+	var rtf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0.5, 0.5);
+	var ltf = A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 0.5, 0.5);
 	return _elm_community$webgl$WebGL$triangles(
 		_elm_lang$core$List$concat(
 			{

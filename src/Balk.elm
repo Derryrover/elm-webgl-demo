@@ -1,4 +1,4 @@
-module Cube exposing (cube)
+module Balk exposing (balk)
 
 import Math.Vector3 exposing (vec3)
 --import CubeFace exposing (face)
@@ -7,18 +7,18 @@ import Color exposing (green, blue, yellow, red, purple, orange)
 import WebGL exposing (Entity)
 import Vertex exposing(Vertex)
 
-cube :  WebGL.Mesh Vertex
-cube =
+balk :  WebGL.Mesh Vertex
+balk =
   let
     -- left, front, top
-    ltf = vec3 -1  1  1
-    rtf = vec3  1  1  1
-    rdf = vec3  1 -1  1
-    ldf = vec3 -1 -1  1
-    ltb = vec3 -1  1 -1
-    rtb = vec3  1  1 -1
-    rdb = vec3  1 -1 -1
-    ldb = vec3 -1 -1 -1
+    ltf = vec3 -1  0.5  0.5
+    rtf = vec3  1  0.5  0.5
+    rdf = vec3  1 -0.5  0.5
+    ldf = vec3 -1 -0.5  0.5
+    ltb = vec3 -1  0.5 -0.5
+    rtb = vec3  1  0.5 -0.5
+    rdb = vec3  1 -0.5 -0.5
+    ldb = vec3 -1 -0.5 -0.5
   in
     --WebGL.Triangle
     WebGL.triangles
