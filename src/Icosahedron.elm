@@ -1,95 +1,86 @@
 module Icosahedron exposing(..)
 
-import Math.Vector3 exposing (vec3)
+import Math.Vector3 exposing (vec3, normalize, add)
 import TriangleFace exposing (face)
-import Color exposing (green, blue, yellow, red, purple, orange, white, darkBlue)
+import Color exposing (green, blue, yellow, red, purple, orange, white, darkBlue, darkGrey)
 import WebGL exposing (Entity)
 import Vertex exposing(Vertex)
+import List
+
+createNormal a b c =
+  (normalize(add(add a b) c))
+
+createFace colorP a b c =
+   face colorP (createNormal a b c) a b c
+
+-- https://en.wikipedia.org/wiki/Icosahedron
+-- The coordinates of the 12 vertices can be defined by:
+-- the vectors defined by all the possible cyclic permutations and sign-flips of
+-- coordinates of the form (2, 1, 0).
+
+-- create 3 rectangles along the tree axis
+-- as seen in icosahedron_construction.png
 
 -- x axis
-x1 = vec3  0  2  1
-x2 = vec3  0  2 -1
-x3 = vec3  0 -2 -1
-x4 = vec3  0 -2  1
+x1 = normalize (vec3  0  2  1)
+x2 = normalize (vec3  0  2 -1)
+x3 = normalize (vec3  0 -2 -1)
+x4 = normalize (vec3  0 -2  1)
 
 -- y axis
-y1 = vec3  1  0  2
-y2 = vec3 -1  0  2
-y3 = vec3 -1  0 -2
-y4 = vec3  1  0 -2
+y1 = normalize (vec3  1  0  2)
+y2 = normalize (vec3 -1  0  2)
+y3 = normalize (vec3 -1  0 -2)
+y4 = normalize (vec3  1  0 -2)
 
 -- z axis
-z1 = vec3  2  1  0
-z2 = vec3  2 -1  0
-z3 = vec3 -2 -1  0
-z4 = vec3 -2  1  0
+z1 = normalize (vec3  2  1  0)
+z2 = normalize (vec3  2 -1  0)
+z3 = normalize (vec3 -2 -1  0)
+z4 = normalize (vec3 -2  1  0)
 
-whitesX1 = face blue (vec3  1  1  1) x1 x2 z1
-whitesX2 = face red  (vec3  1  1  1) x1 x2 z4
-whitesX3 = face blue (vec3  1  1  1) x3 x4 z2
-whitesX4 = face red  (vec3  1  1  1) x3 x4 z3
+-- create the 12 faces by combining 2 adjacent edges of one rectangles with a third edge of another rectangle.
+-- these two adjacent edges should either be both 2 or both -1
+-- the third edge should be from another rectangle that has:
+-- 1 where the two adjacent edges have 2 OR
+-- -1 where the two adjacent edges are -1
+-- for example (0  2  1) (0  2 -1) & ( 2  1  0)
+-- or          (0  2  1) (0  2 -1) & (-2  1  0)
 
-whitesY1 = face green  (vec3  1  1  1) y1 y2 x1
-whitesY2 = face orange (vec3  1  1  1) y1 y2 x4
-whitesY3 = face green  (vec3  1  1  1) y3 y4 x2
-whitesY4 = face orange (vec3  1  1  1) y3 y4 x3
+whitesX1 = createFace blue x1 x2 z1
+whitesX2 = createFace red  x1 x2 z4
+whitesX3 = createFace blue x3 x4 z2
+whitesX4 = createFace red  x3 x4 z3
 
-whitesZ1 = face yellow  (vec3  1  1  1) z1 z2 y1
-whitesZ2 = face purple  (vec3  1  1  1) z1 z2 y4
-whitesZ3 = face yellow  (vec3  1  1  1) z3 z4 y2
-whitesZ4 = face purple  (vec3  1  1  1) z3 z4 y3
+whitesY1 = createFace green  y1 y2 x1
+whitesY2 = createFace orange y1 y2 x4
+whitesY3 = createFace green  y3 y4 x2
+whitesY4 = createFace orange y3 y4 x3
 
-icosahedron = WebGL.triangles
-  [ whitesX1
-  , whitesX2
-  , whitesX3
-  , whitesX4
-  , whitesY1
-  , whitesY2
-  , whitesY3
-  , whitesY4
-  , whitesZ1
-  , whitesZ2
-  , whitesZ3
-  , whitesZ4]
-{-}
--- positive
-p1 = vec3  2  1  0
-p2 = vec3  0  2  1
-p3 = vec3  1  0  2
+whitesZ1 = createFace yellow z1 z2 y1
+whitesZ2 = createFace purple z1 z2 y4
+whitesZ3 = createFace yellow z3 z4 y2
+whitesZ4 = createFace purple z3 z4 y3
 
---negative
-n1 = vec3  -2  -1  0
-n2 = vec3  -0  -2 -1
-n3 = vec3  -1   0 -2
 
---2negative 1positive
-np1 = vec3  -2   1  0
-np2 = vec3   0  -2  1
-np3 = vec3   1   0 -2
+-- create 8 faces by taking one from each axis
+-- for each axis per over all vertixes: they shall not differ in arity
+-- for example ( 0  2 -1) ( 1  0 -2) ( 2  1 0)
+-- if one axis is minus for one vertex it should me minus (or zero) for all
+black1 = createFace darkBlue  x1 y1 z1
+black2 = createFace darkGrey  x1 y2 z4
+black3 = createFace darkGrey  x2 y3 z4
+black4 = createFace darkGrey  x2 y4 z1
+black5 = createFace darkGrey  x3 y4 z2
+black6 = createFace darkGrey  x3 y3 z3
+black7 = createFace darkGrey  x4 y2 z3
+black8 = createFace darkGrey  x4 y1 z2
 
---1negative 2positive
-pn1 = vec3   2  -1  0
-pn2 = vec3   0   2 -1
-p23 = vec3  -1   0  2
--}
+facesWhite = [ whitesX1, whitesX2, whitesX3, whitesX4
+             , whitesY1, whitesY2, whitesY3, whitesY4
+             , whitesZ1, whitesZ2, whitesZ3, whitesZ4 ]
 
-{-}
-top   = vec3  0  1  0
-down  = vec3  0 -1  0
-left  = vec3 -1  0  0
-right = vec3  1  0  0
-front = vec3  0  0  1
-back  = vec3  0  0 -1
+facesBlack = [ black1, black2, black3, black4
+             , black5, black6, black7, black8 ]
 
-ltf = face red    (vec3 -1  1  1) left  top  front
-rtf = face blue   (vec3  1  1  1) right top  front
-rtb = face yellow (vec3  1  1 -1) right top  back
-ltb = face green  (vec3 -1  1 -1) left  top  back
-ldf = face purple (vec3 -1 -1  1) left  down front
-rdf = face orange (vec3  1 -1  1) right down front
-rdb = face white  (vec3  1 -1  1) right down back
-ldb = face darkBlue (vec3 -1 -1  1) left down back
-
-octaeder = WebGL.triangles [ltf,rtf,rtb,ltb,ldf,rdf,rdb,ldb]
--}
+icosahedron = WebGL.triangles (List.concat [facesWhite, facesBlack])
