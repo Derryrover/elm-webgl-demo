@@ -1,0 +1,2 @@
+var _elm_lang$elm_architecture_tutorial$GoldenRatio$goldenRatio = (1 + _elm_lang$core$Basics$sqrt(5)) / 2;
+var _elm_lang$elm_architecture_tutorial$GoldenRatio$inverse = 1 / _elm_lang$elm_architecture_tutorial$GoldenRatio$goldenRatio;

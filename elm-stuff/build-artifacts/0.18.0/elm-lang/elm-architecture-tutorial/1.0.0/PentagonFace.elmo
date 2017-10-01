@@ -1,0 +1,40 @@
+var _elm_lang$elm_architecture_tutorial$PentagonFace$face = F7(
+	function (rawColor, normal, a, b, c, d, e) {
+		var rgb = _elm_lang$core$Color$toRgb(rawColor);
+		var color = A3(
+			_elm_community$linear_algebra$Math_Vector3$vec3,
+			_elm_lang$core$Basics$toFloat(rgb.red) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.green) / 255,
+			_elm_lang$core$Basics$toFloat(rgb.blue) / 255);
+		var vertex = function (position) {
+			return A3(_elm_lang$elm_architecture_tutorial$Vertex$Vertex, color, position, normal);
+		};
+		return {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple3',
+				_0: vertex(a),
+				_1: vertex(b),
+				_2: vertex(c)
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple3',
+					_0: vertex(a),
+					_1: vertex(c),
+					_2: vertex(d)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple3',
+						_0: vertex(a),
+						_1: vertex(d),
+						_2: vertex(e)
+					},
+					_1: {ctor: '[]'}
+				}
+			}
+		};
+	});
