@@ -1,4 +1,0 @@
-var _elm_lang$elm_architecture_tutorial$Rib$size = 3;
-var _elm_lang$elm_architecture_tutorial$Rib$sizeEven = _elm_lang$elm_architecture_tutorial$Arithmetic$isEven(_elm_lang$elm_architecture_tutorial$Rib$size);
-var _elm_lang$elm_architecture_tutorial$Rib$halfSize = (_elm_lang$elm_architecture_tutorial$Rib$size / 2) | 0;
-var _elm_lang$elm_architecture_tutorial$Rib$range = A2(_elm_lang$core$List$range, 1, _elm_lang$elm_architecture_tutorial$Rib$size);

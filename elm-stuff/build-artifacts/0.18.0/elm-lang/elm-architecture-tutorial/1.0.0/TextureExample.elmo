@@ -1,0 +1,256 @@
+var _elm_lang$elm_architecture_tutorial$TextureExample$fragmentShader = {'src': '\n\nprecision mediump float;\nuniform sampler2D crate;\nvarying vec2 vcoord;\n\nvoid main () {\n  gl_FragColor = texture2D(crate, vcoord);\n}\n\n'};
+var _elm_lang$elm_architecture_tutorial$TextureExample$vertexShader = {'src': '\n\nattribute vec3 pos;\nattribute vec3 coord;\nuniform mat4 perspective;\nvarying vec2 vcoord;\n\nvoid main () {\n  gl_Position = perspective * vec4(pos, 1.0);\n  vcoord = coord.xy;\n}\n\n'};
+var _elm_lang$elm_architecture_tutorial$TextureExample$camera = A3(
+	_elm_community$linear_algebra$Math_Matrix4$makeLookAt,
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 5),
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 0),
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0));
+var _elm_lang$elm_architecture_tutorial$TextureExample$perspectiveMatrix = A4(_elm_community$linear_algebra$Math_Matrix4$makePerspective, 45, 1, 1.0e-2, 100);
+var _elm_lang$elm_architecture_tutorial$TextureExample$perspective = function (angle) {
+	return A3(
+		_elm_lang$core$List$foldr,
+		_elm_community$linear_algebra$Math_Matrix4$mul,
+		_elm_community$linear_algebra$Math_Matrix4$identity,
+		{
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$TextureExample$perspectiveMatrix,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$TextureExample$camera,
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+						3 * angle,
+						A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+							2 * angle,
+							A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _elm_lang$elm_architecture_tutorial$TextureExample$face = function () {
+	var bottomRight = {
+		pos: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, -1, 0),
+		coord: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0)
+	};
+	var bottomLeft = {
+		pos: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, -1, 0),
+		coord: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 0)
+	};
+	var topRight = {
+		pos: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 0),
+		coord: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 0)
+	};
+	var topLeft = {
+		pos: A3(_elm_community$linear_algebra$Math_Vector3$vec3, -1, 1, 0),
+		coord: A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0)
+	};
+	return {
+		ctor: '::',
+		_0: {ctor: '_Tuple3', _0: topLeft, _1: topRight, _2: bottomLeft},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple3', _0: bottomLeft, _1: topRight, _2: bottomRight},
+			_1: {ctor: '[]'}
+		}
+	};
+}();
+var _elm_lang$elm_architecture_tutorial$TextureExample$rotatedFace = function (_p0) {
+	var _p1 = _p0;
+	var each = F2(
+		function (f, _p2) {
+			var _p3 = _p2;
+			return {
+				ctor: '_Tuple3',
+				_0: f(_p3._0),
+				_1: f(_p3._1),
+				_2: f(_p3._2)
+			};
+		});
+	var y = A2(
+		_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+		_elm_lang$core$Basics$degrees(_p1._1),
+		A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 1, 0));
+	var x = A2(
+		_elm_community$linear_algebra$Math_Matrix4$makeRotate,
+		_elm_lang$core$Basics$degrees(_p1._0),
+		A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 0, 0));
+	var t = A2(
+		_elm_community$linear_algebra$Math_Matrix4$mul,
+		A2(_elm_community$linear_algebra$Math_Matrix4$mul, x, y),
+		_elm_community$linear_algebra$Math_Matrix4$makeTranslate(
+			A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0, 0, 1)));
+	return A2(
+		_elm_lang$core$List$map,
+		each(
+			function (x) {
+				return _elm_lang$core$Native_Utils.update(
+					x,
+					{
+						pos: A2(_elm_community$linear_algebra$Math_Matrix4$transform, t, x.pos)
+					});
+			}),
+		_elm_lang$elm_architecture_tutorial$TextureExample$face);
+};
+var _elm_lang$elm_architecture_tutorial$TextureExample$crate = _elm_community$webgl$WebGL$triangles(
+	A2(
+		_elm_lang$core$List$concatMap,
+		_elm_lang$elm_architecture_tutorial$TextureExample$rotatedFace,
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 0, _1: 0},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 90, _1: 0},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 180, _1: 0},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 270, _1: 0},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 0, _1: 90},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 0, _1: -90},
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}));
+var _elm_lang$elm_architecture_tutorial$TextureExample$view = function (_p4) {
+	var _p5 = _p4;
+	return function (toDraw) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_community$webgl$WebGL$toHtml,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$width(400),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$height(400),
+							_1: {ctor: '[]'}
+						}
+					},
+					toDraw),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$id('testTexture'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(_p5.error),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	}(
+		function () {
+			var _p6 = _p5.texture;
+			if (_p6.ctor === 'Nothing') {
+				return {ctor: '[]'};
+			} else {
+				return {
+					ctor: '::',
+					_0: A4(
+						_elm_community$webgl$WebGL$entity,
+						_elm_lang$elm_architecture_tutorial$TextureExample$vertexShader,
+						_elm_lang$elm_architecture_tutorial$TextureExample$fragmentShader,
+						_elm_lang$elm_architecture_tutorial$TextureExample$crate,
+						{
+							crate: _p6._0,
+							perspective: _elm_lang$elm_architecture_tutorial$TextureExample$perspective(_p5.theta)
+						}),
+					_1: {ctor: '[]'}
+				};
+			}
+		}());
+};
+var _elm_lang$elm_architecture_tutorial$TextureExample$update = F2(
+	function (action, model) {
+		var _p7 = action;
+		switch (_p7.ctor) {
+			case 'TextureError':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							error: _elm_lang$core$Basics$toString(_p7._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'TextureLoaded':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							texture: _elm_lang$core$Maybe$Just(_p7._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{theta: model.theta + (_p7._0 / 10000)}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
+	});
+var _elm_lang$elm_architecture_tutorial$TextureExample$Model = F3(
+	function (a, b, c) {
+		return {texture: a, theta: b, error: c};
+	});
+var _elm_lang$elm_architecture_tutorial$TextureExample$Animate = function (a) {
+	return {ctor: 'Animate', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$TextureExample$subscriptions = function (model) {
+	return _elm_lang$animation_frame$AnimationFrame$diffs(_elm_lang$elm_architecture_tutorial$TextureExample$Animate);
+};
+var _elm_lang$elm_architecture_tutorial$TextureExample$TextureLoaded = function (a) {
+	return {ctor: 'TextureLoaded', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$TextureExample$TextureError = function (a) {
+	return {ctor: 'TextureError', _0: a};
+};
+var _elm_lang$elm_architecture_tutorial$TextureExample$init = {
+	ctor: '_Tuple2',
+	_0: {texture: _elm_lang$core$Maybe$Nothing, theta: 0, error: ''},
+	_1: A2(
+		_elm_lang$core$Task$attempt,
+		function (result) {
+			var _p8 = result;
+			if (_p8.ctor === 'Err') {
+				return _elm_lang$elm_architecture_tutorial$TextureExample$TextureError(_p8._0);
+			} else {
+				return _elm_lang$elm_architecture_tutorial$TextureExample$TextureLoaded(_p8._0);
+			}
+		},
+		_elm_community$webgl$WebGL_Texture$load('Square2_1024.png'))
+};
+var _elm_lang$elm_architecture_tutorial$TextureExample$main = _elm_lang$html$Html$program(
+	{init: _elm_lang$elm_architecture_tutorial$TextureExample$init, view: _elm_lang$elm_architecture_tutorial$TextureExample$view, subscriptions: _elm_lang$elm_architecture_tutorial$TextureExample$subscriptions, update: _elm_lang$elm_architecture_tutorial$TextureExample$update})();

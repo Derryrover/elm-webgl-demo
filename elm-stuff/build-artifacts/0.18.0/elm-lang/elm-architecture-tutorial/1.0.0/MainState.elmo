@@ -49,12 +49,23 @@ var _elm_lang$elm_architecture_tutorial$MainState$update = F2(
 					_0: A2(_elm_lang$elm_architecture_tutorial$MainState$updateKeyMsg, model, _p2._0),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
+			case 'Spin':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{spin: !model.spin}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				var _p3 = A2(_elm_lang$elm_architecture_tutorial$TextureExample$update, _p2._0, model.textureExample);
+				var textureExampleModel = _p3._0;
+				var textureExampleMessage = _p3._1;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{textureExample: textureExampleModel}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}
@@ -67,12 +78,24 @@ var _elm_lang$elm_architecture_tutorial$MainState$subscriptions = function (mode
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$keyboard$Keyboard$downs(_elm_lang$elm_architecture_tutorial$MainTypes$KeyMsg),
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$core$Platform_Sub$map,
+						_elm_lang$elm_architecture_tutorial$MainTypes$MsgTextureExample,
+						_elm_lang$elm_architecture_tutorial$TextureExample$subscriptions(model.textureExample)),
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 };
-var _elm_lang$elm_architecture_tutorial$MainState$init = {
-	ctor: '_Tuple2',
-	_0: {x: 0, y: 0, spin: false},
-	_1: _elm_lang$core$Platform_Cmd$none
-};
+var _elm_lang$elm_architecture_tutorial$MainState$init = function () {
+	var _p4 = _elm_lang$elm_architecture_tutorial$TextureExample$init;
+	var textureModel = _p4._0;
+	var textureCmd = _p4._1;
+	return {
+		ctor: '_Tuple2',
+		_0: {x: 0, y: 0, spin: false, textureExample: textureModel},
+		_1: A2(_elm_lang$core$Platform_Cmd$map, _elm_lang$elm_architecture_tutorial$MainTypes$MsgTextureExample, textureCmd)
+	};
+}();

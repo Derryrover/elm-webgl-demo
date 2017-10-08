@@ -3,12 +3,17 @@ module MainState exposing (..)
 import MainTypes exposing (Model, Msg(..))
 import AnimationFrame
 import Keyboard
+import TextureExample
 
 init =
+  let (textureModel, textureCmd) = TextureExample.init
+  in
     ( { x = 0
       , y = 0
-      , spin = False }
-    , Cmd.none )
+      , spin = False
+      , textureExample =  textureModel}
+    , --Cmd.none )
+      Cmd.map MsgTextureExample textureCmd)
 
 --(\model -> AnimationFrame.diffs Basics.identity) AnimMsg
 subscriptions : Model -> Sub Msg
@@ -16,6 +21,9 @@ subscriptions model =
     Sub.batch
         [ AnimationFrame.diffs AnimMsg
         , Keyboard.downs KeyMsg
+        --, Cmd.map MsgTextureExample (TextureExample.subscriptions)
+        --, TextureExample.subscriptions
+        , Sub.map MsgTextureExample (TextureExample.subscriptions model.textureExample)
         ]
 
 
@@ -28,6 +36,11 @@ update msg model =
             ( updateKeyMsg model code, Cmd.none )
         Spin ->
             ( { model | spin = not model.spin }, Cmd.none )
+        MsgTextureExample msg ->
+            --( model , Cmd.none )
+            let (textureExampleModel, textureExampleMessage) = TextureExample.update msg model.textureExample
+            in
+            ( {model | textureExample = textureExampleModel} , Cmd.none )
 
 
 updateAnimMsg model dt =

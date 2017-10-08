@@ -1,0 +1,158 @@
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$o = 0;
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$i = 1;
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$z = _elm_lang$elm_architecture_tutorial$GoldenRatio$goldenRatio;
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$x1 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, _elm_lang$elm_architecture_tutorial$Icosahedron2$o, _elm_lang$elm_architecture_tutorial$Icosahedron2$z, _elm_lang$elm_architecture_tutorial$Icosahedron2$i));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$x2 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, _elm_lang$elm_architecture_tutorial$Icosahedron2$o, _elm_lang$elm_architecture_tutorial$Icosahedron2$z, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$i));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$x3 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, _elm_lang$elm_architecture_tutorial$Icosahedron2$o, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$z, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$i));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$x4 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, _elm_lang$elm_architecture_tutorial$Icosahedron2$o, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$z, _elm_lang$elm_architecture_tutorial$Icosahedron2$i));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$y1 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, _elm_lang$elm_architecture_tutorial$Icosahedron2$i, _elm_lang$elm_architecture_tutorial$Icosahedron2$o, _elm_lang$elm_architecture_tutorial$Icosahedron2$z));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$y2 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$i, _elm_lang$elm_architecture_tutorial$Icosahedron2$o, _elm_lang$elm_architecture_tutorial$Icosahedron2$z));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$y3 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$i, _elm_lang$elm_architecture_tutorial$Icosahedron2$o, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$z));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$y4 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, _elm_lang$elm_architecture_tutorial$Icosahedron2$i, _elm_lang$elm_architecture_tutorial$Icosahedron2$o, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$z));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$z1 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, _elm_lang$elm_architecture_tutorial$Icosahedron2$z, _elm_lang$elm_architecture_tutorial$Icosahedron2$i, _elm_lang$elm_architecture_tutorial$Icosahedron2$o));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$z2 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, _elm_lang$elm_architecture_tutorial$Icosahedron2$z, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$i, _elm_lang$elm_architecture_tutorial$Icosahedron2$o));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$z3 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$z, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$i, _elm_lang$elm_architecture_tutorial$Icosahedron2$o));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$z4 = _elm_community$linear_algebra$Math_Vector3$normalize(
+	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 0 - _elm_lang$elm_architecture_tutorial$Icosahedron2$z, _elm_lang$elm_architecture_tutorial$Icosahedron2$i, _elm_lang$elm_architecture_tutorial$Icosahedron2$o));
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$createNormal = F3(
+	function (a, b, c) {
+		return _elm_community$linear_algebra$Math_Vector3$normalize(
+			A2(
+				_elm_community$linear_algebra$Math_Vector3$add,
+				A2(_elm_community$linear_algebra$Math_Vector3$add, a, b),
+				c));
+	});
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$createFace = F4(
+	function (colorP, a, b, c) {
+		return A5(
+			_elm_lang$elm_architecture_tutorial$TriangleFace$face,
+			colorP,
+			A3(_elm_lang$elm_architecture_tutorial$Icosahedron2$createNormal, a, b, c),
+			a,
+			b,
+			c);
+	});
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesX1 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$blue, _elm_lang$elm_architecture_tutorial$Icosahedron2$x1, _elm_lang$elm_architecture_tutorial$Icosahedron2$x2, _elm_lang$elm_architecture_tutorial$Icosahedron2$z1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesX2 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$red, _elm_lang$elm_architecture_tutorial$Icosahedron2$x1, _elm_lang$elm_architecture_tutorial$Icosahedron2$x2, _elm_lang$elm_architecture_tutorial$Icosahedron2$z4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesX3 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$blue, _elm_lang$elm_architecture_tutorial$Icosahedron2$x3, _elm_lang$elm_architecture_tutorial$Icosahedron2$x4, _elm_lang$elm_architecture_tutorial$Icosahedron2$z2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesX4 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$red, _elm_lang$elm_architecture_tutorial$Icosahedron2$x3, _elm_lang$elm_architecture_tutorial$Icosahedron2$x4, _elm_lang$elm_architecture_tutorial$Icosahedron2$z3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesY1 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$blue, _elm_lang$elm_architecture_tutorial$Icosahedron2$y1, _elm_lang$elm_architecture_tutorial$Icosahedron2$y2, _elm_lang$elm_architecture_tutorial$Icosahedron2$x1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesY2 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$red, _elm_lang$elm_architecture_tutorial$Icosahedron2$y1, _elm_lang$elm_architecture_tutorial$Icosahedron2$y2, _elm_lang$elm_architecture_tutorial$Icosahedron2$x4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesY3 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$blue, _elm_lang$elm_architecture_tutorial$Icosahedron2$y3, _elm_lang$elm_architecture_tutorial$Icosahedron2$y4, _elm_lang$elm_architecture_tutorial$Icosahedron2$x2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesY4 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$red, _elm_lang$elm_architecture_tutorial$Icosahedron2$y3, _elm_lang$elm_architecture_tutorial$Icosahedron2$y4, _elm_lang$elm_architecture_tutorial$Icosahedron2$x3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesZ1 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$blue, _elm_lang$elm_architecture_tutorial$Icosahedron2$z1, _elm_lang$elm_architecture_tutorial$Icosahedron2$z2, _elm_lang$elm_architecture_tutorial$Icosahedron2$y1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesZ2 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$red, _elm_lang$elm_architecture_tutorial$Icosahedron2$z1, _elm_lang$elm_architecture_tutorial$Icosahedron2$z2, _elm_lang$elm_architecture_tutorial$Icosahedron2$y4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesZ3 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$blue, _elm_lang$elm_architecture_tutorial$Icosahedron2$z3, _elm_lang$elm_architecture_tutorial$Icosahedron2$z4, _elm_lang$elm_architecture_tutorial$Icosahedron2$y2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesZ4 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$red, _elm_lang$elm_architecture_tutorial$Icosahedron2$z3, _elm_lang$elm_architecture_tutorial$Icosahedron2$z4, _elm_lang$elm_architecture_tutorial$Icosahedron2$y3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$facesWhite = {
+	ctor: '::',
+	_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesX1,
+	_1: {
+		ctor: '::',
+		_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesX2,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesX3,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesX4,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesY1,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesY2,
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesY3,
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesY4,
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesZ1,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesZ2,
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesZ3,
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$whitesZ4,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$black1 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$darkGrey, _elm_lang$elm_architecture_tutorial$Icosahedron2$x1, _elm_lang$elm_architecture_tutorial$Icosahedron2$y1, _elm_lang$elm_architecture_tutorial$Icosahedron2$z1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$black2 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$darkGrey, _elm_lang$elm_architecture_tutorial$Icosahedron2$x1, _elm_lang$elm_architecture_tutorial$Icosahedron2$y2, _elm_lang$elm_architecture_tutorial$Icosahedron2$z4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$black3 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$darkGrey, _elm_lang$elm_architecture_tutorial$Icosahedron2$x2, _elm_lang$elm_architecture_tutorial$Icosahedron2$y3, _elm_lang$elm_architecture_tutorial$Icosahedron2$z4);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$black4 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$darkGrey, _elm_lang$elm_architecture_tutorial$Icosahedron2$x2, _elm_lang$elm_architecture_tutorial$Icosahedron2$y4, _elm_lang$elm_architecture_tutorial$Icosahedron2$z1);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$black5 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$darkGrey, _elm_lang$elm_architecture_tutorial$Icosahedron2$x3, _elm_lang$elm_architecture_tutorial$Icosahedron2$y4, _elm_lang$elm_architecture_tutorial$Icosahedron2$z2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$black6 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$darkGrey, _elm_lang$elm_architecture_tutorial$Icosahedron2$x3, _elm_lang$elm_architecture_tutorial$Icosahedron2$y3, _elm_lang$elm_architecture_tutorial$Icosahedron2$z3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$black7 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$darkGrey, _elm_lang$elm_architecture_tutorial$Icosahedron2$x4, _elm_lang$elm_architecture_tutorial$Icosahedron2$y2, _elm_lang$elm_architecture_tutorial$Icosahedron2$z3);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$black8 = A4(_elm_lang$elm_architecture_tutorial$Icosahedron2$createFace, _elm_lang$core$Color$darkGrey, _elm_lang$elm_architecture_tutorial$Icosahedron2$x4, _elm_lang$elm_architecture_tutorial$Icosahedron2$y1, _elm_lang$elm_architecture_tutorial$Icosahedron2$z2);
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$facesBlack = {
+	ctor: '::',
+	_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$black1,
+	_1: {
+		ctor: '::',
+		_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$black2,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$black3,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$black4,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$black5,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$black6,
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$black7,
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$black8,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _elm_lang$elm_architecture_tutorial$Icosahedron2$icosahedron = _elm_community$webgl$WebGL$triangles(
+	_elm_lang$core$List$concat(
+		{
+			ctor: '::',
+			_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$facesWhite,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$elm_architecture_tutorial$Icosahedron2$facesBlack,
+				_1: {ctor: '[]'}
+			}
+		}));

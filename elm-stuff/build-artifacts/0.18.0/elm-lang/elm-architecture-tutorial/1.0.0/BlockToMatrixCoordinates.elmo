@@ -1,7 +1,0 @@
-var _elm_lang$elm_architecture_tutorial$BlockToMatrixCoordinates$fromMatrix = function (row) {
-	return (_elm_lang$elm_architecture_tutorial$Rib$sizeEven && (_elm_lang$core$Native_Utils.cmp(row, 0) > 0)) ? (row + _elm_lang$elm_architecture_tutorial$Rib$halfSize) : ((row + _elm_lang$elm_architecture_tutorial$Rib$halfSize) + 1);
-};
-var _elm_lang$elm_architecture_tutorial$BlockToMatrixCoordinates$toMatrix = function (row) {
-	var unevenResult = (row - _elm_lang$elm_architecture_tutorial$Rib$halfSize) - 1;
-	return (_elm_lang$elm_architecture_tutorial$Rib$sizeEven && (_elm_lang$core$Native_Utils.cmp(unevenResult, 0) > -1)) ? (unevenResult + 1) : unevenResult;
-};

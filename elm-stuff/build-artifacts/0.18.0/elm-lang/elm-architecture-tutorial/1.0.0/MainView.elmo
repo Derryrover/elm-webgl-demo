@@ -5,32 +5,9 @@ var _elm_lang$elm_architecture_tutorial$MainView$view = function (model) {
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_community$webgl$WebGL$toHtml,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$width(400),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$height(400),
-						_1: {ctor: '[]'}
-					}
-				},
-				A2(_elm_lang$elm_architecture_tutorial$WebGLScene$scene, model.x, model.y)),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$input,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Events$onClick(_elm_lang$elm_architecture_tutorial$MainTypes$Spin),
-							_1: {ctor: '[]'}
-						}
-					},
-					{ctor: '[]'}),
-				_1: {ctor: '[]'}
-			}
+				_elm_lang$html$Html$map,
+				_elm_lang$elm_architecture_tutorial$MainTypes$MsgTextureExample,
+				_elm_lang$elm_architecture_tutorial$TextureExample$view(model.textureExample)),
+			_1: {ctor: '[]'}
 		});
 };

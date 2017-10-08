@@ -1,7 +1,10 @@
-var _elm_lang$elm_architecture_tutorial$MainTypes$Model = F3(
-	function (a, b, c) {
-		return {x: a, y: b, spin: c};
+var _elm_lang$elm_architecture_tutorial$MainTypes$Model = F4(
+	function (a, b, c, d) {
+		return {x: a, y: b, spin: c, textureExample: d};
 	});
+var _elm_lang$elm_architecture_tutorial$MainTypes$MsgTextureExample = function (a) {
+	return {ctor: 'MsgTextureExample', _0: a};
+};
 var _elm_lang$elm_architecture_tutorial$MainTypes$Spin = {ctor: 'Spin'};
 var _elm_lang$elm_architecture_tutorial$MainTypes$KeyMsg = function (a) {
 	return {ctor: 'KeyMsg', _0: a};

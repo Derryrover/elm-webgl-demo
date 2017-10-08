@@ -10,6 +10,8 @@ import Tetraeder exposing(tetraeder)
 import Balk exposing (balk)
 import Icosahedron exposing(icosahedron)
 import TruncatedIcosahedron exposing(pentagon, truncatedIcosahedron)
+import Icosahedron2
+import TextureExample
 
 scene : Float -> Float -> List Entity
 scene angleX angleY =
@@ -21,4 +23,6 @@ scene angleX angleY =
     --[ entity vertexShader fragmentShader balk matrixCollection ]
     --[ entity vertexShader fragmentShader icosahedron matrixCollection ]
     --[ entity vertexShader fragmentShader pentagon matrixCollection ]
-    [ entity vertexShader fragmentShader truncatedIcosahedron matrixCollection ]
+    --[ entity vertexShader fragmentShader truncatedIcosahedron matrixCollection ]
+    [ entity vertexShader fragmentShader Icosahedron2.icosahedron matrixCollection ]
+    --[ entity TextureExample.vertexShader TextureExample.fragmentShader TextureExample.crate matrixCollection ]

@@ -1,5 +1,2 @@
 var _elm_lang$elm_architecture_tutorial$Repl$t_s_o_l = {ctor: '_Tuple0'};
-var _elm_lang$elm_architecture_tutorial$Repl$d_e_l_t_r_o_n_3_0_3_0 = A2(
-	_elm_community$linear_algebra$Math_Vector3$scale,
-	3,
-	A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 2, 3));
+var _elm_lang$elm_architecture_tutorial$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_community$webgl$WebGL_Texture$load;
