@@ -8,6 +8,8 @@ import Vertex exposing(Vertex)
 import List
 import GoldenRatio exposing(goldenRatio)
 
+-- difference from Icosahedron: this one uses golden ratio instead of 1
+
 createNormal a b c = (normalize(add(add a b) c))
 
 createFace colorP a b c = face colorP (createNormal a b c) a b c
